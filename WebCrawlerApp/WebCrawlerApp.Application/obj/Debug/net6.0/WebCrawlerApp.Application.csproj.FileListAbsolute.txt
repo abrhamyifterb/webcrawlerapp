@@ -1,0 +1,15 @@
+/home/abrham/Downloads/data_uni/ClassProject/web_crawler/WebCrawlerApp/WebCrawlerApp.Application/bin/Debug/net6.0/WebCrawlerApp.Application.deps.json
+/home/abrham/Downloads/data_uni/ClassProject/web_crawler/WebCrawlerApp/WebCrawlerApp.Application/bin/Debug/net6.0/WebCrawlerApp.Application.dll
+/home/abrham/Downloads/data_uni/ClassProject/web_crawler/WebCrawlerApp/WebCrawlerApp.Application/bin/Debug/net6.0/WebCrawlerApp.Application.pdb
+/home/abrham/Downloads/data_uni/ClassProject/web_crawler/WebCrawlerApp/WebCrawlerApp.Application/bin/Debug/net6.0/WebCrawlerApp.Core.dll
+/home/abrham/Downloads/data_uni/ClassProject/web_crawler/WebCrawlerApp/WebCrawlerApp.Application/bin/Debug/net6.0/WebCrawlerApp.Core.pdb
+/home/abrham/Downloads/data_uni/ClassProject/web_crawler/WebCrawlerApp/WebCrawlerApp.Application/obj/Debug/net6.0/WebCrawlerApp.Application.csproj.AssemblyReference.cache
+/home/abrham/Downloads/data_uni/ClassProject/web_crawler/WebCrawlerApp/WebCrawlerApp.Application/obj/Debug/net6.0/WebCrawlerApp.Application.GeneratedMSBuildEditorConfig.editorconfig
+/home/abrham/Downloads/data_uni/ClassProject/web_crawler/WebCrawlerApp/WebCrawlerApp.Application/obj/Debug/net6.0/WebCrawlerApp.Application.AssemblyInfoInputs.cache
+/home/abrham/Downloads/data_uni/ClassProject/web_crawler/WebCrawlerApp/WebCrawlerApp.Application/obj/Debug/net6.0/WebCrawlerApp.Application.AssemblyInfo.cs
+/home/abrham/Downloads/data_uni/ClassProject/web_crawler/WebCrawlerApp/WebCrawlerApp.Application/obj/Debug/net6.0/WebCrawlerApp.Application.csproj.CoreCompileInputs.cache
+/home/abrham/Downloads/data_uni/ClassProject/web_crawler/WebCrawlerApp/WebCrawlerApp.Application/obj/Debug/net6.0/WebCrawlerApp.Application.csproj.CopyComplete
+/home/abrham/Downloads/data_uni/ClassProject/web_crawler/WebCrawlerApp/WebCrawlerApp.Application/obj/Debug/net6.0/WebCrawlerApp.Application.dll
+/home/abrham/Downloads/data_uni/ClassProject/web_crawler/WebCrawlerApp/WebCrawlerApp.Application/obj/Debug/net6.0/refint/WebCrawlerApp.Application.dll
+/home/abrham/Downloads/data_uni/ClassProject/web_crawler/WebCrawlerApp/WebCrawlerApp.Application/obj/Debug/net6.0/WebCrawlerApp.Application.pdb
+/home/abrham/Downloads/data_uni/ClassProject/web_crawler/WebCrawlerApp/WebCrawlerApp.Application/obj/Debug/net6.0/ref/WebCrawlerApp.Application.dll

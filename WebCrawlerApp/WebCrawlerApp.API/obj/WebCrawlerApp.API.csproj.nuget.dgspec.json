@@ -1,0 +1,350 @@
+{
+  "format": 1,
+  "restore": {
+    "/home/abrham/Downloads/data_uni/ClassProject/web_crawler/WebCrawlerApp/WebCrawlerApp.API/WebCrawlerApp.API.csproj": {}
+  },
+  "projects": {
+    "/home/abrham/Downloads/data_uni/ClassProject/web_crawler/WebCrawlerApp/WebCrawlerApp.API/WebCrawlerApp.API.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "/home/abrham/Downloads/data_uni/ClassProject/web_crawler/WebCrawlerApp/WebCrawlerApp.API/WebCrawlerApp.API.csproj",
+        "projectName": "WebCrawlerApp.API",
+        "projectPath": "/home/abrham/Downloads/data_uni/ClassProject/web_crawler/WebCrawlerApp/WebCrawlerApp.API/WebCrawlerApp.API.csproj",
+        "packagesPath": "/home/abrham/.nuget/packages/",
+        "outputPath": "/home/abrham/Downloads/data_uni/ClassProject/web_crawler/WebCrawlerApp/WebCrawlerApp.API/obj/",
+        "projectStyle": "PackageReference",
+        "configFilePaths": [
+          "/home/abrham/.nuget/NuGet/NuGet.Config"
+        ],
+        "originalTargetFrameworks": [
+          "net6.0"
+        ],
+        "sources": {
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "net6.0": {
+            "targetAlias": "net6.0",
+            "projectReferences": {
+              "/home/abrham/Downloads/data_uni/ClassProject/web_crawler/WebCrawlerApp/WebCrawlerApp.Application/WebCrawlerApp.Application.csproj": {
+                "projectPath": "/home/abrham/Downloads/data_uni/ClassProject/web_crawler/WebCrawlerApp/WebCrawlerApp.Application/WebCrawlerApp.Application.csproj"
+              },
+              "/home/abrham/Downloads/data_uni/ClassProject/web_crawler/WebCrawlerApp/WebCrawlerApp.Core/WebCrawlerApp.Core.csproj": {
+                "projectPath": "/home/abrham/Downloads/data_uni/ClassProject/web_crawler/WebCrawlerApp/WebCrawlerApp.Core/WebCrawlerApp.Core.csproj"
+              },
+              "/home/abrham/Downloads/data_uni/ClassProject/web_crawler/WebCrawlerApp/WebCrawlerApp.Infrastructure/WebCrawlerApp.Infrastructure.csproj": {
+                "projectPath": "/home/abrham/Downloads/data_uni/ClassProject/web_crawler/WebCrawlerApp/WebCrawlerApp.Infrastructure/WebCrawlerApp.Infrastructure.csproj"
+              }
+            }
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "net6.0": {
+          "targetAlias": "net6.0",
+          "dependencies": {
+            "AutoMapper.Extensions.Microsoft.DependencyInjection": {
+              "target": "Package",
+              "version": "[12.0.1, )"
+            },
+            "Hangfire.AspNetCore": {
+              "target": "Package",
+              "version": "[1.8.5, )"
+            },
+            "Hangfire.MemoryStorage": {
+              "target": "Package",
+              "version": "[1.8.0, )"
+            },
+            "HotChocolate.AspNetCore": {
+              "target": "Package",
+              "version": "[13.5.1, )"
+            },
+            "HotChocolate.AspNetCore.Playground": {
+              "target": "Package",
+              "version": "[10.5.5, )"
+            },
+            "HotChocolate.Data.EntityFramework": {
+              "target": "Package",
+              "version": "[13.5.1, )"
+            },
+            "Microsoft.EntityFrameworkCore.Design": {
+              "include": "Runtime, Build, Native, ContentFiles, Analyzers, BuildTransitive",
+              "suppressParent": "All",
+              "target": "Package",
+              "version": "[7.0.10, )"
+            },
+            "Microsoft.EntityFrameworkCore.Tools": {
+              "include": "Runtime, Build, Native, ContentFiles, Analyzers, BuildTransitive",
+              "suppressParent": "All",
+              "target": "Package",
+              "version": "[7.0.10, )"
+            },
+            "Swashbuckle.AspNetCore": {
+              "target": "Package",
+              "version": "[6.5.0, )"
+            }
+          },
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48",
+            "net481"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.AspNetCore.App": {
+              "privateAssets": "none"
+            },
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "/usr/share/dotnet/sdk/6.0.412/RuntimeIdentifierGraph.json"
+        }
+      }
+    },
+    "/home/abrham/Downloads/data_uni/ClassProject/web_crawler/WebCrawlerApp/WebCrawlerApp.Application/WebCrawlerApp.Application.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "/home/abrham/Downloads/data_uni/ClassProject/web_crawler/WebCrawlerApp/WebCrawlerApp.Application/WebCrawlerApp.Application.csproj",
+        "projectName": "WebCrawlerApp.Application",
+        "projectPath": "/home/abrham/Downloads/data_uni/ClassProject/web_crawler/WebCrawlerApp/WebCrawlerApp.Application/WebCrawlerApp.Application.csproj",
+        "packagesPath": "/home/abrham/.nuget/packages/",
+        "outputPath": "/home/abrham/Downloads/data_uni/ClassProject/web_crawler/WebCrawlerApp/WebCrawlerApp.Application/obj/",
+        "projectStyle": "PackageReference",
+        "configFilePaths": [
+          "/home/abrham/.nuget/NuGet/NuGet.Config"
+        ],
+        "originalTargetFrameworks": [
+          "net6.0"
+        ],
+        "sources": {
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "net6.0": {
+            "targetAlias": "net6.0",
+            "projectReferences": {
+              "/home/abrham/Downloads/data_uni/ClassProject/web_crawler/WebCrawlerApp/WebCrawlerApp.Core/WebCrawlerApp.Core.csproj": {
+                "projectPath": "/home/abrham/Downloads/data_uni/ClassProject/web_crawler/WebCrawlerApp/WebCrawlerApp.Core/WebCrawlerApp.Core.csproj"
+              }
+            }
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "net6.0": {
+          "targetAlias": "net6.0",
+          "dependencies": {
+            "AutoMapper": {
+              "target": "Package",
+              "version": "[12.0.1, )"
+            },
+            "Hangfire.AspNetCore": {
+              "target": "Package",
+              "version": "[1.8.5, )"
+            },
+            "Hangfire.MemoryStorage": {
+              "target": "Package",
+              "version": "[1.8.0, )"
+            },
+            "HtmlAgilityPack": {
+              "target": "Package",
+              "version": "[1.11.52, )"
+            },
+            "Newtonsoft.Json": {
+              "target": "Package",
+              "version": "[13.0.3, )"
+            },
+            "PuppeteerSharp": {
+              "target": "Package",
+              "version": "[11.0.4, )"
+            },
+            "RobotsTxt": {
+              "target": "Package",
+              "version": "[2014.2.19, )"
+            }
+          },
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48",
+            "net481"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "/usr/share/dotnet/sdk/6.0.412/RuntimeIdentifierGraph.json"
+        }
+      }
+    },
+    "/home/abrham/Downloads/data_uni/ClassProject/web_crawler/WebCrawlerApp/WebCrawlerApp.Core/WebCrawlerApp.Core.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "/home/abrham/Downloads/data_uni/ClassProject/web_crawler/WebCrawlerApp/WebCrawlerApp.Core/WebCrawlerApp.Core.csproj",
+        "projectName": "WebCrawlerApp.Core",
+        "projectPath": "/home/abrham/Downloads/data_uni/ClassProject/web_crawler/WebCrawlerApp/WebCrawlerApp.Core/WebCrawlerApp.Core.csproj",
+        "packagesPath": "/home/abrham/.nuget/packages/",
+        "outputPath": "/home/abrham/Downloads/data_uni/ClassProject/web_crawler/WebCrawlerApp/WebCrawlerApp.Core/obj/",
+        "projectStyle": "PackageReference",
+        "configFilePaths": [
+          "/home/abrham/.nuget/NuGet/NuGet.Config"
+        ],
+        "originalTargetFrameworks": [
+          "net6.0"
+        ],
+        "sources": {
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "net6.0": {
+            "targetAlias": "net6.0",
+            "projectReferences": {}
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "net6.0": {
+          "targetAlias": "net6.0",
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48",
+            "net481"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "/usr/share/dotnet/sdk/6.0.412/RuntimeIdentifierGraph.json"
+        }
+      }
+    },
+    "/home/abrham/Downloads/data_uni/ClassProject/web_crawler/WebCrawlerApp/WebCrawlerApp.Infrastructure/WebCrawlerApp.Infrastructure.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "/home/abrham/Downloads/data_uni/ClassProject/web_crawler/WebCrawlerApp/WebCrawlerApp.Infrastructure/WebCrawlerApp.Infrastructure.csproj",
+        "projectName": "WebCrawlerApp.Infrastructure",
+        "projectPath": "/home/abrham/Downloads/data_uni/ClassProject/web_crawler/WebCrawlerApp/WebCrawlerApp.Infrastructure/WebCrawlerApp.Infrastructure.csproj",
+        "packagesPath": "/home/abrham/.nuget/packages/",
+        "outputPath": "/home/abrham/Downloads/data_uni/ClassProject/web_crawler/WebCrawlerApp/WebCrawlerApp.Infrastructure/obj/",
+        "projectStyle": "PackageReference",
+        "configFilePaths": [
+          "/home/abrham/.nuget/NuGet/NuGet.Config"
+        ],
+        "originalTargetFrameworks": [
+          "net6.0"
+        ],
+        "sources": {
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "net6.0": {
+            "targetAlias": "net6.0",
+            "projectReferences": {
+              "/home/abrham/Downloads/data_uni/ClassProject/web_crawler/WebCrawlerApp/WebCrawlerApp.Application/WebCrawlerApp.Application.csproj": {
+                "projectPath": "/home/abrham/Downloads/data_uni/ClassProject/web_crawler/WebCrawlerApp/WebCrawlerApp.Application/WebCrawlerApp.Application.csproj"
+              },
+              "/home/abrham/Downloads/data_uni/ClassProject/web_crawler/WebCrawlerApp/WebCrawlerApp.Core/WebCrawlerApp.Core.csproj": {
+                "projectPath": "/home/abrham/Downloads/data_uni/ClassProject/web_crawler/WebCrawlerApp/WebCrawlerApp.Core/WebCrawlerApp.Core.csproj"
+              }
+            }
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "net6.0": {
+          "targetAlias": "net6.0",
+          "dependencies": {
+            "Microsoft.EntityFrameworkCore": {
+              "target": "Package",
+              "version": "[7.0.10, )"
+            },
+            "Microsoft.EntityFrameworkCore.Design": {
+              "include": "Runtime, Build, Native, ContentFiles, Analyzers, BuildTransitive",
+              "suppressParent": "All",
+              "target": "Package",
+              "version": "[7.0.10, )"
+            },
+            "Microsoft.EntityFrameworkCore.Sqlite": {
+              "target": "Package",
+              "version": "[7.0.10, )"
+            },
+            "Microsoft.EntityFrameworkCore.Tools": {
+              "include": "Runtime, Build, Native, ContentFiles, Analyzers, BuildTransitive",
+              "suppressParent": "All",
+              "target": "Package",
+              "version": "[7.0.10, )"
+            },
+            "Microsoft.Extensions.Configuration": {
+              "target": "Package",
+              "version": "[7.0.0, )"
+            },
+            "Microsoft.Extensions.Configuration.FileExtensions": {
+              "target": "Package",
+              "version": "[7.0.0, )"
+            },
+            "Microsoft.Extensions.Configuration.Json": {
+              "target": "Package",
+              "version": "[7.0.0, )"
+            }
+          },
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48",
+            "net481"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "/usr/share/dotnet/sdk/6.0.412/RuntimeIdentifierGraph.json"
+        }
+      }
+    }
+  }
+}

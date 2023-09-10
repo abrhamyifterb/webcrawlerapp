@@ -1,0 +1,40 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.0.31903.59
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebCrawlerApp.Core", "WebCrawlerApp.Core\WebCrawlerApp.Core.csproj", "{C950D6CC-B9A6-4314-A6D5-A2CCA8CCAACE}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebCrawlerApp.Application", "WebCrawlerApp.Application\WebCrawlerApp.Application.csproj", "{90ABA18F-03B3-4AAF-B259-C05BABB55F13}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebCrawlerApp.Infrastructure", "WebCrawlerApp.Infrastructure\WebCrawlerApp.Infrastructure.csproj", "{A25FD4EC-847D-4AF5-A73D-6E8A6A5F35A3}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebCrawlerApp.API", "WebCrawlerApp.API\WebCrawlerApp.API.csproj", "{2F39D945-CA6F-4BDC-A351-DDDA3F76DEBA}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{C950D6CC-B9A6-4314-A6D5-A2CCA8CCAACE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C950D6CC-B9A6-4314-A6D5-A2CCA8CCAACE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C950D6CC-B9A6-4314-A6D5-A2CCA8CCAACE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C950D6CC-B9A6-4314-A6D5-A2CCA8CCAACE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{90ABA18F-03B3-4AAF-B259-C05BABB55F13}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{90ABA18F-03B3-4AAF-B259-C05BABB55F13}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{90ABA18F-03B3-4AAF-B259-C05BABB55F13}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{90ABA18F-03B3-4AAF-B259-C05BABB55F13}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A25FD4EC-847D-4AF5-A73D-6E8A6A5F35A3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A25FD4EC-847D-4AF5-A73D-6E8A6A5F35A3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A25FD4EC-847D-4AF5-A73D-6E8A6A5F35A3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A25FD4EC-847D-4AF5-A73D-6E8A6A5F35A3}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2F39D945-CA6F-4BDC-A351-DDDA3F76DEBA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2F39D945-CA6F-4BDC-A351-DDDA3F76DEBA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2F39D945-CA6F-4BDC-A351-DDDA3F76DEBA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2F39D945-CA6F-4BDC-A351-DDDA3F76DEBA}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+EndGlobal
