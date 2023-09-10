@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "Gh4UnT3brvrvsDZn/RAd0dIArlv0k0g0XtqOmGmt7OwWrUPP2c1irH8BW3nuOvHxfX84bQ0SUUMmsKHAXqyimg==",
+  "dgSpecHash": "XAiG+d0nN4nbrV5P7fwixmPzoULrW5MPZyrXJdUxeZfHUyD4BX7/Pv362ppA/qxZKLPS/NhmZIL8X8DknbI7qw==",
   "success": true,
-  "projectFilePath": "/home/abrham/Downloads/data_uni/ClassProject/web_crawler/WebCrawlerApp/WebCrawlerApp.Core/WebCrawlerApp.Core.csproj",
+  "projectFilePath": "C:\\Users\\Anastasia\\source\\repos\\SabolooVersia\\webcrawlerapp\\WebCrawlerApp\\WebCrawlerApp.Core\\WebCrawlerApp.Core.csproj",
   "expectedPackageFiles": [],
   "logs": []
 }

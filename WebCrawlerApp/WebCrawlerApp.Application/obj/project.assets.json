@@ -1023,32 +1023,40 @@
     ]
   },
   "packageFolders": {
-    "/home/abrham/.nuget/packages/": {}
+    "C:\\Users\\Anastasia\\.nuget\\packages\\": {},
+    "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "/home/abrham/Downloads/data_uni/ClassProject/web_crawler/WebCrawlerApp/WebCrawlerApp.Application/WebCrawlerApp.Application.csproj",
+      "projectUniqueName": "C:\\Users\\Anastasia\\source\\repos\\SabolooVersia\\webcrawlerapp\\WebCrawlerApp\\WebCrawlerApp.Application\\WebCrawlerApp.Application.csproj",
       "projectName": "WebCrawlerApp.Application",
-      "projectPath": "/home/abrham/Downloads/data_uni/ClassProject/web_crawler/WebCrawlerApp/WebCrawlerApp.Application/WebCrawlerApp.Application.csproj",
-      "packagesPath": "/home/abrham/.nuget/packages/",
-      "outputPath": "/home/abrham/Downloads/data_uni/ClassProject/web_crawler/WebCrawlerApp/WebCrawlerApp.Application/obj/",
+      "projectPath": "C:\\Users\\Anastasia\\source\\repos\\SabolooVersia\\webcrawlerapp\\WebCrawlerApp\\WebCrawlerApp.Application\\WebCrawlerApp.Application.csproj",
+      "packagesPath": "C:\\Users\\Anastasia\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\Anastasia\\source\\repos\\SabolooVersia\\webcrawlerapp\\WebCrawlerApp\\WebCrawlerApp.Application\\obj\\",
       "projectStyle": "PackageReference",
+      "fallbackFolders": [
+        "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
+      ],
       "configFilePaths": [
-        "/home/abrham/.nuget/NuGet/NuGet.Config"
+        "C:\\Users\\Anastasia\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
+        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
         "net6.0"
       ],
       "sources": {
+        "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+        "C:\\Program Files\\dotnet\\library-packs": {},
         "https://api.nuget.org/v3/index.json": {}
       },
       "frameworks": {
         "net6.0": {
           "targetAlias": "net6.0",
           "projectReferences": {
-            "/home/abrham/Downloads/data_uni/ClassProject/web_crawler/WebCrawlerApp/WebCrawlerApp.Core/WebCrawlerApp.Core.csproj": {
-              "projectPath": "/home/abrham/Downloads/data_uni/ClassProject/web_crawler/WebCrawlerApp/WebCrawlerApp.Core/WebCrawlerApp.Core.csproj"
+            "C:\\Users\\Anastasia\\source\\repos\\SabolooVersia\\webcrawlerapp\\WebCrawlerApp\\WebCrawlerApp.Core\\WebCrawlerApp.Core.csproj": {
+              "projectPath": "C:\\Users\\Anastasia\\source\\repos\\SabolooVersia\\webcrawlerapp\\WebCrawlerApp\\WebCrawlerApp.Core\\WebCrawlerApp.Core.csproj"
             }
           }
         }
@@ -1108,7 +1116,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "/usr/share/dotnet/sdk/6.0.412/RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.200\\RuntimeIdentifierGraph.json"
       }
     }
   },

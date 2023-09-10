@@ -65,8 +65,6 @@
 using Newtonsoft.Json;
 using WebCrawlerApp.Core.Entities;
 using WebCrawlerApp.Infrastructure.Data;
-
-using Newtonsoft.Json;
 using System.Linq;
 
 namespace WebCrawlerApp.API.GraphQL
@@ -74,22 +72,22 @@ namespace WebCrawlerApp.API.GraphQL
 public class Query
 {
 
-    private readonly AppDbContext _context; // Assume you have a DbContext named YourDbContext
+        //private readonly AppDbContext _context; // Assume you have a DbContext named YourDbContext
 
-    public Query(AppDbContext context)
-    {
-        _context = context;
-    }
+        //public Query(AppDbContext context)
+        //{
+        //    _context = context;
+        //}
 
-    // [UseProjection]
-    // [UseFiltering]
-    // [UseSorting]
-    // public IQueryable<Website> GetWebsites([Service] AppDbContext dbContext) =>
-    //          dbContext.Websites;
+        // [UseProjection]
+        // [UseFiltering]
+        // [UseSorting]
+        // public IQueryable<Website> GetWebsites([Service] AppDbContext dbContext) =>
+        //          dbContext.Websites;
 
 
 
-    public IEnumerable<WebPage> GetWebsites()
+        public IEnumerable<WebPage> GetWebsites([Service] AppDbContext _context)
     {
         //return _context.Websites;
         return _context.Websites.Select(w => new WebPage
