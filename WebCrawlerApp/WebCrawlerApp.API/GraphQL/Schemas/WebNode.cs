@@ -5,7 +5,6 @@
     public string? Url { get; set; }
     public TimeSpan CrawlTime { get; set; }
     public List<WebNode>? Links { get; set; }
-
-    //public WebPageType? Owner { get; set; }
+    public WebPage Owner { get; set; }
 
 }

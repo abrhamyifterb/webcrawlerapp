@@ -17,6 +17,11 @@ public class WebNodeType : ObjectType<WebNode>
 
         descriptor.Field(t => t.Links)
             .Type<ListType<NodeType>>();
+
+        descriptor.Field(t => t.Owner)
+            .Type<WebPageType>();
+
+
     }
 
 }

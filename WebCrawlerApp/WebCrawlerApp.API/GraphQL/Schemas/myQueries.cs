@@ -1,6 +1,7 @@
 ﻿using Newtonsoft.Json;
 using System.Diagnostics;
 using System.Threading.Tasks;
+using WebCrawlerApp.Core.Entities;
 using WebCrawlerApp.Infrastructure.Data;
 
 namespace WebCrawlerApp.API.GraphQL.Schemas
@@ -23,22 +24,35 @@ namespace WebCrawlerApp.API.GraphQL.Schemas
 
         public List<WebNode> GetWebNodesByIds([Service] AppDbContext _context, List<Guid> webPageIds)
         {
-            var crawledDataList = _context.Websites
-                .Where(w => webPageIds.Contains(w.Id))
-                .Select(w => w.CrawledData).ToList();
+            var filteredWebPages = _context.Websites
+                .Where(w => webPageIds.Contains(w.Id)).ToList();
 
-            var deserializedList = new List<WebNode>();
-
-            foreach (var crawledData in crawledDataList)
+            var result = new List<WebNode>();
+            foreach (var f in filteredWebPages)
             {
-                var deserializedData = JsonConvert.DeserializeObject<List<WebNode>>(crawledData);
-                deserializedList.AddRange(deserializedData);
-                Debug.WriteLine("taso");
+                var crawledDataList = JsonConvert.DeserializeObject<List<CrawledData>>(f.CrawledData);
+                foreach (var c in crawledDataList) 
+                {
+                    var myNode = new WebNode();
+                    myNode.Url = c.Url;
+                    myNode.Title = c.Title;
+                    myNode.CrawlTime = c.CrawlTime;
+
+                    var owner = new WebPage();
+                    owner.Identifier = f.Id;
+                    owner.Url = f.Url;
+                    owner.Tags = (List<string>)f.Tags;
+                    owner.Active = f.IsActive;
+
+                    myNode.Owner = owner;
+                    result.Add(myNode);
+
+                }
             }
 
-            return deserializedList;
-
+            return result;
         }
+
 
         public WebNode GetWebNodesWithoutId([Service] AppDbContext _context)
         {
