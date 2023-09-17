@@ -58,7 +58,7 @@
 //         //                         .FirstOrDefault()
 //         //     };
 //         // }
-   
+
 //     }
 // }
 
@@ -66,11 +66,13 @@ using Newtonsoft.Json;
 using WebCrawlerApp.Core.Entities;
 using WebCrawlerApp.Infrastructure.Data;
 using System.Linq;
+using HotChocolate.Resolvers;
+using Microsoft.EntityFrameworkCore;
 
-namespace WebCrawlerApp.API.GraphQL
+namespace WebCrawlerApp.API.GraphQL.Schemas
 {
-public class Query
-{
+    public partial class Query
+    {
 
         //private readonly AppDbContext _context; // Assume you have a DbContext named YourDbContext
 
@@ -85,48 +87,55 @@ public class Query
         // public IQueryable<Website> GetWebsites([Service] AppDbContext dbContext) =>
         //          dbContext.Websites;
 
+        //public string Instructions => _context.Websites
+        //        //.Where(w => webPageIds.Contains(w.Id))
+        //       .Select(w => JsonConvert.DeserializeObject<List<NodeType>>(w.CrawledData)).ToString();
+
+        //public IEnumerable<WebPage> GetWebsites([Service] AppDbContext _context)
+        //{
+        //    //return _context.Websites;
+        //    return _context.Websites.Select(w => new WebPage
+        //    {
+        //        Identifier = w.Id,
+        //        Label = w.Label,
+        //        Url = w.Url,
+        //        Regexp = w.BoundaryRegExp,
+        //        Tags = w.Tags.ToList(),
+        //        Active = w.IsActive
+        //    }).ToList();
+        //}
+
+        //public List<NodeType>? GetNodes([Service] AppDbContext _context, List<Guid> webPageIds)
+        //{
+        //    //var errors = resolverContext.ResponseName;
+        //    var crawledDataList = _context.Websites
+        //        .Where(w => webPageIds.Contains(w.Id))
+        //        .Select(w => JsonConvert.DeserializeObject<List<NodeType>>(w.CrawledData));
+
+        //    // Deserializing the CrawledData to get Node data
+        //    //crawledDataList = (List<NodeType>?) crawledDataList;
 
 
-        public IEnumerable<WebPage> GetWebsites([Service] AppDbContext _context)
-    {
-        //return _context.Websites;
-        return _context.Websites.Select(w => new WebPage
-        {
-            Identifier = w.Id,
-            Label = w.Label,
-            Url = w.Url,
-            Regexp = w.BoundaryRegExp,
-            Tags = w.Tags.ToList(),
-            Active = w.IsActive
-        }).ToList();
+
+        //    return new List<NodeType>();
+        //}
+
+        // public IQueryable<Website> GetWebsites([Service] AppDbContext dbContext)
+        // {
+        //     return dbContext.Websites;
+        // }
+        // public async Task<IEnumerable<Node>> GetNodes(List<Guid> webPages, [Service] AppDbContext dbContext)
+        // {
+        //     var websites = dbContext.Websites.Where(w => webPages.Contains(w.Id)).ToList();
+
+        //     List<Node> nodes = new List<Node>();
+        //     foreach (var website in websites)
+        //     {
+        //         var crawledData = JsonConvert.DeserializeObject<List<Node>>(website.CrawledData);
+        //         nodes.AddRange(crawledData);
+        //     }
+
+        //     return nodes;
+        // }
     }
-
-    // public IEnumerable<Node> GetNodes(List<Guid> webPageIds)
-    // {
-    //     var crawledDataList = _context.Websites
-    //         .Where(w => webPageIds.Contains(w.Id))
-    //         .Select(w => JsonConvert.DeserializeObject<List<Node>>(w.CrawledData)) // Deserializing the CrawledData to get Node data
-    //         .ToList();
-
-    //     return crawledDataList.SelectMany(data => data).ToList();
-    // }
-
-    // public IQueryable<Website> GetWebsites([Service] AppDbContext dbContext)
-    // {
-    //     return dbContext.Websites;
-    // }
-    // public async Task<IEnumerable<Node>> GetNodes(List<Guid> webPages, [Service] AppDbContext dbContext)
-    // {
-    //     var websites = dbContext.Websites.Where(w => webPages.Contains(w.Id)).ToList();
-
-    //     List<Node> nodes = new List<Node>();
-    //     foreach (var website in websites)
-    //     {
-    //         var crawledData = JsonConvert.DeserializeObject<List<Node>>(website.CrawledData);
-    //         nodes.AddRange(crawledData);
-    //     }
-
-    //     return nodes;
-    // }
-}
 }

@@ -7,7 +7,8 @@ using Microsoft.EntityFrameworkCore;
 using Hangfire;
 using Hangfire.MemoryStorage;
 using System.Text.Json;
-using WebCrawlerApp.API.GraphQL;
+using WebCrawlerApp.Core.Entities;
+using WebCrawlerApp.API.GraphQL.Schemas;
 
 var builder = WebApplication.CreateBuilder(args);
 
