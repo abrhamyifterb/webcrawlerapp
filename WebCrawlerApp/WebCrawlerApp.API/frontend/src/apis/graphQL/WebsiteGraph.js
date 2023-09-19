@@ -95,7 +95,7 @@ function WebsiteGraph({ webPages, mode, viewMode }) {
         alert('Failed to start execution.');
       }
     } else {
-      // Handle node without owner (i.e., domain view nodes)
+      
     }
   };
 
