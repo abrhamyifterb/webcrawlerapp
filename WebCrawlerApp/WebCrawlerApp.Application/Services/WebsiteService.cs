@@ -100,6 +100,17 @@ namespace WebCrawlerApp.Application.Services
             var website = await _unitOfWork.WebsiteRepository.GetById(websiteId);
             if (website != null)
             {
+                // Delete all Execution and CrawledData associated with this Website.
+                // ToDo: Where is await needed and where is it not neccessary?
+                var executions = website.Executions;
+                foreach (var execution in executions) {
+                    var crawledData = await _unitOfWork.CrawlRepository.GetByExecutionId(execution.Id);
+                    if (crawledData != null) {
+                        await _unitOfWork.CrawlRepository.Delete(crawledData);
+                    }
+                    await _unitOfWork.ExecutionRepository.Delete(execution);
+                }
+
                 await _unitOfWork.WebsiteRepository.Delete(website);
                 return true;
             }

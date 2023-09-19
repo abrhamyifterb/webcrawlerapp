@@ -4752,23 +4752,23 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\Anastasia\\.nuget\\packages\\": {},
+    "C:\\Users\\Nguyen\\.nuget\\packages\\": {},
     "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\Anastasia\\source\\repos\\SabolooVersia\\webcrawlerapp\\WebCrawlerApp\\WebCrawlerApp.API\\WebCrawlerApp.API.csproj",
+      "projectUniqueName": "C:\\Users\\Nguyen\\MFF\\webcrawlerapp\\WebCrawlerApp\\WebCrawlerApp.API\\WebCrawlerApp.API.csproj",
       "projectName": "WebCrawlerApp.API",
-      "projectPath": "C:\\Users\\Anastasia\\source\\repos\\SabolooVersia\\webcrawlerapp\\WebCrawlerApp\\WebCrawlerApp.API\\WebCrawlerApp.API.csproj",
-      "packagesPath": "C:\\Users\\Anastasia\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\Anastasia\\source\\repos\\SabolooVersia\\webcrawlerapp\\WebCrawlerApp\\WebCrawlerApp.API\\obj\\",
+      "projectPath": "C:\\Users\\Nguyen\\MFF\\webcrawlerapp\\WebCrawlerApp\\WebCrawlerApp.API\\WebCrawlerApp.API.csproj",
+      "packagesPath": "C:\\Users\\Nguyen\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\Nguyen\\MFF\\webcrawlerapp\\WebCrawlerApp\\WebCrawlerApp.API\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
       ],
       "configFilePaths": [
-        "C:\\Users\\Anastasia\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\Nguyen\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
@@ -4777,21 +4777,20 @@
       ],
       "sources": {
         "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
-        "C:\\Program Files\\dotnet\\library-packs": {},
         "https://api.nuget.org/v3/index.json": {}
       },
       "frameworks": {
         "net6.0": {
           "targetAlias": "net6.0",
           "projectReferences": {
-            "C:\\Users\\Anastasia\\source\\repos\\SabolooVersia\\webcrawlerapp\\WebCrawlerApp\\WebCrawlerApp.Application\\WebCrawlerApp.Application.csproj": {
-              "projectPath": "C:\\Users\\Anastasia\\source\\repos\\SabolooVersia\\webcrawlerapp\\WebCrawlerApp\\WebCrawlerApp.Application\\WebCrawlerApp.Application.csproj"
+            "C:\\Users\\Nguyen\\MFF\\webcrawlerapp\\WebCrawlerApp\\WebCrawlerApp.Application\\WebCrawlerApp.Application.csproj": {
+              "projectPath": "C:\\Users\\Nguyen\\MFF\\webcrawlerapp\\WebCrawlerApp\\WebCrawlerApp.Application\\WebCrawlerApp.Application.csproj"
             },
-            "C:\\Users\\Anastasia\\source\\repos\\SabolooVersia\\webcrawlerapp\\WebCrawlerApp\\WebCrawlerApp.Core\\WebCrawlerApp.Core.csproj": {
-              "projectPath": "C:\\Users\\Anastasia\\source\\repos\\SabolooVersia\\webcrawlerapp\\WebCrawlerApp\\WebCrawlerApp.Core\\WebCrawlerApp.Core.csproj"
+            "C:\\Users\\Nguyen\\MFF\\webcrawlerapp\\WebCrawlerApp\\WebCrawlerApp.Core\\WebCrawlerApp.Core.csproj": {
+              "projectPath": "C:\\Users\\Nguyen\\MFF\\webcrawlerapp\\WebCrawlerApp\\WebCrawlerApp.Core\\WebCrawlerApp.Core.csproj"
             },
-            "C:\\Users\\Anastasia\\source\\repos\\SabolooVersia\\webcrawlerapp\\WebCrawlerApp\\WebCrawlerApp.Infrastructure\\WebCrawlerApp.Infrastructure.csproj": {
-              "projectPath": "C:\\Users\\Anastasia\\source\\repos\\SabolooVersia\\webcrawlerapp\\WebCrawlerApp\\WebCrawlerApp.Infrastructure\\WebCrawlerApp.Infrastructure.csproj"
+            "C:\\Users\\Nguyen\\MFF\\webcrawlerapp\\WebCrawlerApp\\WebCrawlerApp.Infrastructure\\WebCrawlerApp.Infrastructure.csproj": {
+              "projectPath": "C:\\Users\\Nguyen\\MFF\\webcrawlerapp\\WebCrawlerApp\\WebCrawlerApp.Infrastructure\\WebCrawlerApp.Infrastructure.csproj"
             }
           }
         }
@@ -4866,7 +4865,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.200\\RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.201\\RuntimeIdentifierGraph.json"
       }
     }
   },

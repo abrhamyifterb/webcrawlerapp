@@ -31,5 +31,17 @@ namespace WebCrawlerApp.Infrastructure.Repositories
             
             return await _context.SaveChangesAsync();
         }
-    }
+
+		Task<int> ICrawlRepository.Delete(CrawledData crawledData) {
+			_context.CrawledDatas.Remove(crawledData);
+			return Task.FromResult(_context.SaveChanges());
+		}
+
+		Task<CrawledData> ICrawlRepository.GetByExecutionId(Guid executionId) {
+            var crawledData = _context.CrawledDatas
+                            .Where(e => e.ExecutionId == executionId);
+			return Task.FromResult(crawledData as CrawledData);
+		}
+
+	}
 }
