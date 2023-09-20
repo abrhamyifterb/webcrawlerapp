@@ -1,0 +1,63 @@
+$color-primary: #4CAF50;
+$color-primary-hover: #45A049;
+$color-secondary: #003cff;
+$color-secondary-hover: #0092e6;
+$color-danger: #f44336;
+$color-danger-hover: #da190b;
+$color-neutral-light: #f8f8f8;
+$color-border: #ccc;
+
+.form-container {
+    margin: 20px auto;
+    padding: 20px;
+    border: 1px solid $color-border;
+    border-radius: 4px;
+    background-color: $color-neutral-light;
+
+    label {
+      display: block;
+      margin-bottom: 5px;
+    }
+
+    input, select, textarea {
+      width: 100%;
+      padding: 5px;
+      margin-bottom: 10px;
+      font-size: 14px;
+      border: 1px solid $color-border;
+      border-radius: 4px;
+    }
+
+    button {
+      &.add, &.save {
+        background-color: $color-primary;
+        color: #fff;
+
+        &:hover {
+          background-color: $color-primary-hover;
+        }
+      }
+
+      &.edit {
+        background-color: $color-secondary;
+        color: #fff;
+
+        &:hover {
+          background-color: $color-secondary-hover;
+        }
+      }
+
+      &.cancel {
+        background-color: $color-danger;
+        color: #fff;
+
+        &:hover {
+          background-color: $color-danger-hover;
+        }
+      }
+    }
+
+    .error {
+      color: #f44336;
+    }
+  }

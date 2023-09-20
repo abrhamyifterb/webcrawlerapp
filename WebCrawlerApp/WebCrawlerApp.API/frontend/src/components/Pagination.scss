@@ -1,0 +1,28 @@
+$color-primary: #4CAF50;
+$color-primary-hover: #45A049;
+
+.pagination {
+    display: flex;
+    justify-content: center;
+    margin-top: 15px;
+
+    button {
+      background-color: $color-primary;
+      color: white;
+      padding: 8px 16px;
+      margin: 0 4px;
+      border: none;
+      cursor: pointer;
+      border-radius: 3px;
+      font-size: 16px;
+
+      &:hover {
+        background-color: $color-primary-hover;
+      }
+
+      &.disabled {
+        cursor: not-allowed;
+        background-color: #999;
+      }
+    }
+  }
