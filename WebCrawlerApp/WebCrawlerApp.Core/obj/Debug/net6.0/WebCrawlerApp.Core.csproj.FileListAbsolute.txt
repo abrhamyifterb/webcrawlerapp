@@ -22,3 +22,15 @@ C:\Users\Anastasia\source\repos\SabolooVersia\webcrawlerapp\WebCrawlerApp\WebCra
 C:\Users\Anastasia\source\repos\SabolooVersia\webcrawlerapp\WebCrawlerApp\WebCrawlerApp.Core\obj\Debug\net6.0\refint\WebCrawlerApp.Core.dll
 C:\Users\Anastasia\source\repos\SabolooVersia\webcrawlerapp\WebCrawlerApp\WebCrawlerApp.Core\obj\Debug\net6.0\WebCrawlerApp.Core.pdb
 C:\Users\Anastasia\source\repos\SabolooVersia\webcrawlerapp\WebCrawlerApp\WebCrawlerApp.Core\obj\Debug\net6.0\ref\WebCrawlerApp.Core.dll
+C:\Users\Nguyen\MFF\webcrawlerapp\WebCrawlerApp\WebCrawlerApp.Core\bin\Debug\net6.0\WebCrawlerApp.Core.deps.json
+C:\Users\Nguyen\MFF\webcrawlerapp\WebCrawlerApp\WebCrawlerApp.Core\bin\Debug\net6.0\WebCrawlerApp.Core.dll
+C:\Users\Nguyen\MFF\webcrawlerapp\WebCrawlerApp\WebCrawlerApp.Core\bin\Debug\net6.0\WebCrawlerApp.Core.pdb
+C:\Users\Nguyen\MFF\webcrawlerapp\WebCrawlerApp\WebCrawlerApp.Core\obj\Debug\net6.0\WebCrawlerApp.Core.csproj.AssemblyReference.cache
+C:\Users\Nguyen\MFF\webcrawlerapp\WebCrawlerApp\WebCrawlerApp.Core\obj\Debug\net6.0\WebCrawlerApp.Core.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\Nguyen\MFF\webcrawlerapp\WebCrawlerApp\WebCrawlerApp.Core\obj\Debug\net6.0\WebCrawlerApp.Core.AssemblyInfoInputs.cache
+C:\Users\Nguyen\MFF\webcrawlerapp\WebCrawlerApp\WebCrawlerApp.Core\obj\Debug\net6.0\WebCrawlerApp.Core.AssemblyInfo.cs
+C:\Users\Nguyen\MFF\webcrawlerapp\WebCrawlerApp\WebCrawlerApp.Core\obj\Debug\net6.0\WebCrawlerApp.Core.csproj.CoreCompileInputs.cache
+C:\Users\Nguyen\MFF\webcrawlerapp\WebCrawlerApp\WebCrawlerApp.Core\obj\Debug\net6.0\WebCrawlerApp.Core.dll
+C:\Users\Nguyen\MFF\webcrawlerapp\WebCrawlerApp\WebCrawlerApp.Core\obj\Debug\net6.0\refint\WebCrawlerApp.Core.dll
+C:\Users\Nguyen\MFF\webcrawlerapp\WebCrawlerApp\WebCrawlerApp.Core\obj\Debug\net6.0\WebCrawlerApp.Core.pdb
+C:\Users\Nguyen\MFF\webcrawlerapp\WebCrawlerApp\WebCrawlerApp.Core\obj\Debug\net6.0\ref\WebCrawlerApp.Core.dll
