@@ -31,6 +31,12 @@ namespace WebCrawlerApp.Application.Services
             public int RetryCount { get; set; }
         }
 
+        /// <summary>
+        /// The entry point of the crawling process
+        /// </summary>
+        /// <param name="url"></param>
+        /// <param name="boundaryRegExp"></param>
+        /// <returns></returns>
         async Task<ResponseDTO<List<CrawledDataDTO>>> ICrawlService.CrawlWebsite(string url, string boundaryRegExp)
         {
             var response = new ResponseDTO<List<CrawledDataDTO>>();
@@ -67,6 +73,9 @@ namespace WebCrawlerApp.Application.Services
             while (_crawlQueue.TryDequeue(out var item))
             {
                 var normalizedUrl = item.Url;
+
+                // normalize Url
+
                 if (string.IsNullOrEmpty(normalizedUrl))
                 {
                     _logger.LogWarning($"URL could not be normalized and will be skipped: {item.Url}");
@@ -83,6 +92,7 @@ namespace WebCrawlerApp.Application.Services
                     continue;
                 }
 
+                
                 var crawledData = await CrawlSinglePage(item.Url, item.BoundaryRegExp);
                 
                 if (crawledData != null)
@@ -93,6 +103,7 @@ namespace WebCrawlerApp.Application.Services
                         crawledPages.Add(crawledData);
                     }
 
+                    // Enque the links for recursive crawling
                     foreach (var link in crawledData.Links)
                     {
                         _crawlQueue.Enqueue(new QueueItem { Url = link, BoundaryRegExp = item.BoundaryRegExp });
@@ -107,10 +118,17 @@ namespace WebCrawlerApp.Application.Services
             }
         }
 
+        /// <summary>
+        /// Actual Crawling Process
+        /// </summary>
+        /// <param name="url"></param>
+        /// <param name="boundaryRegExp"></param>
+        /// <returns></returns>
         private async Task<CrawledDataDTO> CrawlSinglePage(string url, string boundaryRegExp)
         {
             try
             {
+                
                 if (!await CanCrawl(url))
                 {
                     _logger.LogWarning($"Crawling is disallowed by robots.txt for {url}");
@@ -139,6 +157,14 @@ namespace WebCrawlerApp.Application.Services
                 return null;
             }
         }
+
+        /// <summary>
+        /// Parse Html and return the links of the corresponding website
+        /// </summary>
+        /// <param name="content"></param>
+        /// <param name="url"></param>
+        /// <param name="boundaryRegExp"></param>
+        /// <returns></returns>
         private Task<CrawledDataDTO> HtmlDocumentParser(string content, string url, string boundaryRegExp){
             var doc = new HtmlDocument();
             doc.LoadHtml(content);
@@ -146,9 +172,11 @@ namespace WebCrawlerApp.Application.Services
             var titleNode = doc.DocumentNode.SelectSingleNode("//head/title");
             var title = titleNode != null ? titleNode.InnerText : "No title found";
 
+            // check the match between the website and the regex
             bool boundaryRegExpChecker = Regex.IsMatch(url, boundaryRegExp);
             var links = new List<string>();
 
+            // if match get list of all links of the crawled webpg 
             if(boundaryRegExpChecker) {
                 var linkNodes = doc.DocumentNode.SelectNodes("//a[@href]");
                 string baseUrl = url;
@@ -175,6 +203,12 @@ namespace WebCrawlerApp.Application.Services
 
             return Task.FromResult(parsedProcessed);
         }
+
+        /// <summary>
+        /// Being respectful
+        /// </summary>
+        /// <param name="url"></param>
+        /// <returns></returns>
         private async Task<bool> CanCrawl(string url)
         {
             try
