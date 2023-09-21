@@ -9,6 +9,7 @@ using Hangfire.MemoryStorage;
 using System.Text.Json;
 using WebCrawlerApp.Core.Entities;
 using WebCrawlerApp.API.GraphQL.Schemas;
+using Npgsql;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -34,10 +35,10 @@ builder.Services.AddScoped<ICrawlRepository, CrawlRepository>();
 builder.Services.AddScoped<IUnitOfWork, UnitOfWork>();
 builder.Services.AddGraphQLServer().AddQueryType<Query>().AddProjections().AddFiltering().AddSorting();
 
-builder.Services.AddAutoMapper(typeof(WebsiteService).Assembly); 
+builder.Services.AddAutoMapper(typeof(WebsiteService).Assembly);
 
-builder.Services.AddDbContext<AppDbContext>(options => 
-    options.UseSqlite(builder.Configuration.GetConnectionString("DefaultConnection")));
+builder.Services.AddDbContext<AppDbContext>(options =>
+    options.UseNpgsql("Host=localhost:5432;Username=admin;Password=admin;Database=postgres"));
 
 builder.Services.AddHttpClient();
 
