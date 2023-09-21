@@ -37,7 +37,7 @@ namespace WebCrawlerApp.Core.Entities {
         public void SetTitle(string title)
         {
             if(string.IsNullOrWhiteSpace(title)) 
-                title = "No Title Provided"; //throw new ArgumentException("Title cannot be null or empty.");
+                title = "No Title Provided"; 
 
             Title = title;
         }
@@ -50,8 +50,6 @@ namespace WebCrawlerApp.Core.Entities {
         }
         public void SetLinks(ICollection<string> links)
         {
-            // if(links == null || !links.Any())
-            //     throw new ArgumentException("Links cannot be null or empty.");
             Links = links;
         }
 

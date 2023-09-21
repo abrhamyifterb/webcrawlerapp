@@ -51,6 +51,21 @@ namespace WebCrawlerApp.Application.Services
             }
             return response;
         }
+        public async Task<ResponseDTO<ExecutionDTO>> GetLatestExecutionForWebsites(List<Guid> websiteIds)
+        {
+            var response = new ResponseDTO<ExecutionDTO>();
+            try
+            {
+                var execution = await _unitOfWork.ExecutionRepository.GetLatestExecutionByWebsiteIds(websiteIds);
+                response.Data = _mapper.Map<ExecutionDTO>(execution);
+            } 
+            catch (Exception ex)
+            {
+                _logger.LogError(ex, "An error occurred while fetching the latest execution for the websites");
+                response.ErrorMessage = "An internal error occurred.";
+            }
+            return response;
+        }
 
         public async Task<ResponseDTO<IEnumerable<ExecutionDTO>>> GetAll()
         {
@@ -107,4 +122,3 @@ namespace WebCrawlerApp.Application.Services
 
     }
 }
-

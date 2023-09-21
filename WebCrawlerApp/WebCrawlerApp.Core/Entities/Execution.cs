@@ -45,7 +45,7 @@ namespace WebCrawlerApp.Core.Entities {
         {
             Status = status;
         }
-
+        
         public void SetCrawledSitesCount(int crawledSitesCount) {
             CrawledSitesCount = crawledSitesCount;
         }

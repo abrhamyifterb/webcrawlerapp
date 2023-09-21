@@ -7,8 +7,9 @@ namespace WebCrawlerApp.Application.Interfaces
     {
         Task<ResponseDTO<ExecutionDTO>> GetExecutionDetails(Guid executionId);
         Task<ResponseDTO<IEnumerable<ExecutionDTO>>> GetAllExecutionsForWebsite(Guid websiteId);
+        Task<ResponseDTO<ExecutionDTO>> GetLatestExecutionForWebsites(List<Guid> websiteIds);
         Task<ResponseDTO<IEnumerable<ExecutionDTO>>> GetAll();
         Task<ExecutionDTO> StartExecution(Guid websiteId, string websiteLabel);
         Task<ExecutionDTO> EndExecution(Guid executionId, int crawledSitesCount);
     }
-}
+} 

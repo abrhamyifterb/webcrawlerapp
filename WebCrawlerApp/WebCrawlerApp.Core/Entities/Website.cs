@@ -71,9 +71,6 @@ namespace WebCrawlerApp.Core.Entities {
         }
         public void SetCrawledData(string crawledData)
         {
-            // if(tags == null || !tags.Any())
-            //     throw new ArgumentException("Tags cannot be null or empty.");
-
             CrawledData = crawledData;
         }
 

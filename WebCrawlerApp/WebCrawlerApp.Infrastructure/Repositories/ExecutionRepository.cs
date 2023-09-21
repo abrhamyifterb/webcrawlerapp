@@ -46,6 +46,15 @@ namespace WebCrawlerApp.Infrastructure.Repositories
                 .ToList();
             return Task.FromResult(myExecutionList as IEnumerable<Execution>);
         }
+        async Task<Execution> IExecutionRepository.GetLatestExecutionByWebsiteIds(List<Guid> websiteIds)
+        {
+            var latestExecution = await _context.Executions
+                .Where(e => websiteIds.Contains(e.WebsiteId))
+                .OrderByDescending(e => e.EndTime)
+                .FirstOrDefaultAsync();
+
+            return latestExecution;
+        }
 
         async Task<int> IExecutionRepository.Update(Execution execution)
         {
