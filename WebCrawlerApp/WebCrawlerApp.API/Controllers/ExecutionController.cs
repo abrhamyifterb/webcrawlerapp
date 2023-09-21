@@ -40,4 +40,12 @@ public class ExecutionController : ControllerBase
         return Ok(executions);
     }
 
+    [HttpGet("websites/latest")]
+    public async Task<IActionResult> GetLatestExecutionForWebsites([FromQuery] List<Guid> websiteIds)
+    {
+        var execution = await _executionService.GetLatestExecutionForWebsites(websiteIds);
+        if (execution.Data == null) return NotFound();
+        return Ok(execution);
+    }
+
 }

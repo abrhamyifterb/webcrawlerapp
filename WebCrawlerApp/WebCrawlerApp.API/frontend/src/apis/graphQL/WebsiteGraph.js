@@ -27,6 +27,7 @@ function WebsiteGraph({ webPages, mode, viewMode }) {
     const links = [];
 
     nodes.forEach(node => {
+      if(!node || !node.url) return;
       const nodeId = node.url;
       nodeMap[nodeId] = {
         id: nodeId,
@@ -55,6 +56,7 @@ function WebsiteGraph({ webPages, mode, viewMode }) {
     const links = [];
 
     nodes.forEach(node => {
+      if(!node || !node.url) return;
       const domain = new URL(node.url).hostname;
       if (!domainMap[domain]) {
         domainMap[domain] = {
@@ -95,7 +97,7 @@ function WebsiteGraph({ webPages, mode, viewMode }) {
         alert('Failed to start execution.');
       }
     } else {
-      
+      // Handle node without owner (i.e., domain view nodes)
     }
   };
 
