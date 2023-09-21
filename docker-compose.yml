@@ -1,10 +1,17 @@
 version: '3.8'
 services:
-  app:
+  database:
+    container_name: crawler-database
     build:
-      context: .
+      context: ./database
       dockerfile: Dockerfile
-    volumes:
-      - ./frontend/src:/app/src
     ports:
-      - "3000:3000"
+      - "5432:5432"
+
+#  backend:
+#    container_name: crawler-backend
+#    build:
+#      context: ./WebCrawlerApp
+#      dockerfile: Dockerfile
+#    ports:
+#      - "7056:80"
