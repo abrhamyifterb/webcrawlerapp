@@ -97,7 +97,6 @@ namespace WebCrawlerApp.Application.Services
                 
                 if (crawledData != null)
                 {
-
                     lock (crawledPages)
                     {
                         crawledPages.Add(crawledData);
@@ -134,9 +133,7 @@ namespace WebCrawlerApp.Application.Services
                     _logger.LogWarning($"Crawling is disallowed by robots.txt for {url}");
                     return null;
                 }
-
-                //url = NormalizeUrl(url);
-
+                var StartCrawlTime = DateTime.UtcNow - StartTime
                 var httpResponse = await _httpClient.GetAsync(url);
 
                 if (!httpResponse.IsSuccessStatusCode)
@@ -148,7 +145,8 @@ namespace WebCrawlerApp.Application.Services
                 var content = await httpResponse.Content.ReadAsStringAsync();
                 
                 var parsedProcessedDocument = HtmlDocumentParser(content, url, boundaryRegExp);
-
+                var EndCrawlTime = DateTime.UtcNow - StartCrawlTime;
+                parsedProcessedDocument.CrawlTime = EndCrawlTime;
                 return parsedProcessedDocument.Result;
             }
             catch (Exception ex)
@@ -199,6 +197,7 @@ namespace WebCrawlerApp.Application.Services
                 Title = title,
                 IsRestricted = !boundaryRegExpChecker,
                 Links = links
+                CrawlTime = null
             };
 
             return Task.FromResult(parsedProcessed);
@@ -213,7 +212,6 @@ namespace WebCrawlerApp.Application.Services
         {
             try
             {
-                //return true;
                 var robotsTxtUrl = new Uri(new Uri(url), "/robots.txt");
                 var httpResponse = await _httpClient.GetAsync(robotsTxtUrl);
                 if (!httpResponse.IsSuccessStatusCode)

@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "I/oX4R/xS4+LpBRe1r8gQkxqSaViGsa1N63l2EQCqGGM5l2MVG6OKRUpNEBo79WZ4p4GJiid0dWvVqBp72J/tw==",
+  "dgSpecHash": "gjLIydx6nd24UhsnfluQcSvKnKC1tuDuw006XzriDXiU3Wpq77WFeUxTOIuDPXdqDRRT7pQMvw21olWihmkEZw==",
   "success": true,
-  "projectFilePath": "C:\\Users\\Nguyen\\MFF\\webcrawlerapp\\WebCrawlerApp\\WebCrawlerApp.Core\\WebCrawlerApp.Core.csproj",
+  "projectFilePath": "/home/abrham/Desktop/nn/webcrawlerapp/WebCrawlerApp/WebCrawlerApp.Core/WebCrawlerApp.Core.csproj",
   "expectedPackageFiles": [],
   "logs": []
 }
