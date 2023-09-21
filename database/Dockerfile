@@ -1,6 +1,6 @@
 FROM library/postgres
 ENV POSTGRES_USER admin
 ENV POSTGRES_PASSWORD admin
-ENV POSTGRES_DB crawlerDB
+ENV POSTGRES_DB postgres
 
 COPY init.sql /docker-entrypoint-initdb.d/
