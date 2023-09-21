@@ -15,6 +15,10 @@ public class WebsiteController : ControllerBase
         _websiteService = websiteService;
     }
 
+    /// <summary>
+    /// Gets all websites
+    /// </summary>
+    /// <returns></returns>
     [HttpGet]
     public async Task<IActionResult> Get()
     {
@@ -22,6 +26,11 @@ public class WebsiteController : ControllerBase
         return Ok(allSites);
     }
 
+    /// <summary>
+    /// Gets website based on the id 
+    /// </summary>
+    /// <param name="id"></param>
+    /// <returns></returns>
     [HttpGet("{id}")]
     public async Task<IActionResult> Get(Guid id)
     {
@@ -32,6 +41,11 @@ public class WebsiteController : ControllerBase
         return Ok(website);
     }
 
+    /// <summary>
+    /// Creates Website
+    /// </summary>
+    /// <param name="website"></param>
+    /// <returns></returns>
     [HttpPost]
     public async Task<IActionResult> Post([FromBody] WebsiteDTO website)
     {
@@ -39,6 +53,11 @@ public class WebsiteController : ControllerBase
         return CreatedAtAction(nameof(Get), new { id = addedWebsite.Id }, addedWebsite);
     }
 
+    /// <summary>
+    /// Updates Website
+    /// </summary>
+    /// <param name="website"></param>
+    /// <returns></returns>
     [HttpPut("{id}")]
     public async Task<IActionResult> Put([FromBody] WebsiteDTO website)
     {
@@ -49,6 +68,11 @@ public class WebsiteController : ControllerBase
         return Ok(updatedWebsite);
     }
 
+    /// <summary>
+    /// Deletes website
+    /// </summary>
+    /// <param name="id"></param>
+    /// <returns></returns>
     [HttpDelete("{id}")]
     public async Task<IActionResult> Delete(Guid id)
     {
@@ -59,6 +83,11 @@ public class WebsiteController : ControllerBase
         return NoContent();
     }
 
+    /// <summary>
+    /// Triggers the crawling process based on the website id that is passed
+    /// </summary>
+    /// <param name="id"></param>
+    /// <returns></returns>
     [HttpPost("{id}/crawl")]
     public async Task<IActionResult> TriggerCrawl(Guid id)
     {

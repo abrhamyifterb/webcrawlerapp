@@ -8,6 +8,12 @@ namespace WebCrawlerApp.API.GraphQL
 {
     public class Query
     {
+
+    /// <summary>
+    /// Retrievs all the websites from the database
+    /// </summary>
+    /// <param name="dbContext"></param>
+    /// <returns></returns>
     public List<WebPage> GetWebsites([Service] AppDbContext dbContext)
     {
         return dbContext.Websites.Select(w => new WebPage
@@ -21,6 +27,12 @@ namespace WebCrawlerApp.API.GraphQL
         }).ToList();
     }
 
+    /// <summary>
+    /// Gets Nodes (CrawledData) from the database according to the passed webpageids 
+    /// </summary>
+    /// <param name="webPages"></param>
+    /// <param name="dbContext"></param>
+    /// <returns></returns>
     public List<Node> GetNodes(List<Guid> webPages, [Service] AppDbContext dbContext)
     {
         var sites = dbContext.Websites.Where(w => webPages.Contains(w.Id)).ToList();

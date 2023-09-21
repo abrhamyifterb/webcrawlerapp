@@ -14,6 +14,10 @@ public class ExecutionController : ControllerBase
         _executionService = executionService;
     }
 
+    /// <summary>
+    /// Gets all Execution records 
+    /// </summary>
+    /// <returns></returns>
     [HttpGet]
     public async Task<IActionResult> GetAllExecutions()
     {
@@ -23,6 +27,11 @@ public class ExecutionController : ControllerBase
         return Ok(execution);
     }
 
+    /// <summary>
+    /// Gets Execution records based on their ids
+    /// </summary>
+    /// <param name="id"></param>
+    /// <returns></returns>
     [HttpGet("{id}")]
     public async Task<IActionResult> GetExecutionDetails(Guid id)
     {
@@ -32,6 +41,11 @@ public class ExecutionController : ControllerBase
         return Ok(execution);
     }
 
+    /// <summary>
+    /// Gets all executions based on the corresponding webside ids
+    /// </summary>
+    /// <param name="websiteId"></param>
+    /// <returns></returns>
     [HttpGet("website/{websiteId}")]
     public async Task<IActionResult> GetAllExecutionsForWebsite(Guid websiteId)
     {
@@ -40,6 +54,11 @@ public class ExecutionController : ControllerBase
         return Ok(executions);
     }
 
+    /// <summary>
+    /// Gets the latest execution for the corresponding websites
+    /// </summary>
+    /// <param name="websiteIds"></param>
+    /// <returns></returns>
     [HttpGet("websites/latest")]
     public async Task<IActionResult> GetLatestExecutionForWebsites([FromQuery] List<Guid> websiteIds)
     {

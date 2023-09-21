@@ -1,4 +1,5 @@
 namespace WebCrawlerApp.API.GraphQL.Schemas {
+    
     public class Node
     {
         public string? Title { get; set; }

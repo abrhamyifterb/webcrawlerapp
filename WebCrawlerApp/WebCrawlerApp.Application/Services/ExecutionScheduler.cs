@@ -14,6 +14,10 @@ public class ExecutionScheduler
         _websiteService = websiteService;
     }
 
+    /// <summary>
+    /// Gets all active websites and checks if it's time to crawl them
+    /// </summary>
+    /// <returns></returns>
     public async Task CheckAndExecutePendingWebsites()
     {
         var activeWebsites = await _websiteRepo.GetActiveWebsites();
@@ -44,60 +48,3 @@ public class ExecutionScheduler
 }
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-// using Microsoft.Extensions.DependencyInjection;
-// using WebCrawlerApp.Application.Interfaces;
-// using WebCrawlerApp.Core.Entities;
-// using WebCrawlerApp.Core.Interfaces;
-
-// public class ExecutionScheduler
-// {
-//     private readonly IServiceScopeFactory _scopeFactory;
-
-//     public ExecutionScheduler(IServiceScopeFactory scopeFactory)
-//     {
-//         _scopeFactory = scopeFactory;
-//     }
-
-//     public async Task CheckAndExecutePendingWebsites()
-//     {
-//         var activeWebsites = await GetActiveWebsites();
-
-//         var tasks = activeWebsites.Where(ShouldExecute).Select(website => TriggerCrawl(website.Id)).ToList();
-
-//         await Task.WhenAll(tasks);
-//     }
-
-//     private async Task<IEnumerable<Website>> GetActiveWebsites()
-//     {
-//         using var scope = _scopeFactory.CreateScope();
-//         var unitOfWork = scope.ServiceProvider.GetRequiredService<IUnitOfWork>();
-//         return await unitOfWork.WebsiteRepository.GetActiveWebsites();
-//     }
-
-//     private async Task TriggerCrawl(Guid websiteId)
-//     {
-//         using var scope = _scopeFactory.CreateScope();
-//         var websiteService = scope.ServiceProvider.GetRequiredService<IWebsiteService>();
-//         await websiteService.TriggerCrawl(websiteId);
-//     }
-//     private bool ShouldExecute(Website website)
-//     {
-//         var nowUtc = DateTime.UtcNow;
-//         return nowUtc >= website.LastExecutionTime.AddMinutes(website.CrawlFrequency);
-//     }
-
-// }

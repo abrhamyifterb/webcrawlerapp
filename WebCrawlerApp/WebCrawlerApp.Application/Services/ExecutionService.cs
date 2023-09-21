@@ -20,6 +20,11 @@ namespace WebCrawlerApp.Application.Services
             _logger = logger ?? throw new ArgumentNullException(nameof(logger));
         }
 
+        /// <summary>
+        /// Gets Execution records based on their ids
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
         public async Task<ResponseDTO<ExecutionDTO>> GetExecutionDetails(Guid executionId)
         {
             var response = new ResponseDTO<ExecutionDTO>();
@@ -36,6 +41,12 @@ namespace WebCrawlerApp.Application.Services
             return response;
         }
 
+
+        /// <summary>
+        /// Gets all executions based on the corresponding (passed) webside ids
+        /// </summary>
+        /// <param name="websiteId"></param>
+        /// <returns></returns>
         public async Task<ResponseDTO<IEnumerable<ExecutionDTO>>> GetAllExecutionsForWebsite(Guid websiteId)
         {
             var response = new ResponseDTO<IEnumerable<ExecutionDTO>>();
@@ -51,6 +62,12 @@ namespace WebCrawlerApp.Application.Services
             }
             return response;
         }
+
+        /// <summary>
+        /// Gets the latest execution for the corresponding websites
+        /// </summary>
+        /// <param name="websiteIds"></param>
+        /// <returns></returns>
         public async Task<ResponseDTO<ExecutionDTO>> GetLatestExecutionForWebsites(List<Guid> websiteIds)
         {
             var response = new ResponseDTO<ExecutionDTO>();
@@ -67,6 +84,10 @@ namespace WebCrawlerApp.Application.Services
             return response;
         }
 
+        /// <summary>
+        /// Gets all Execution records 
+        /// </summary>
+        /// <returns></returns>
         public async Task<ResponseDTO<IEnumerable<ExecutionDTO>>> GetAll()
         {
             var response = new ResponseDTO<IEnumerable<ExecutionDTO>>();

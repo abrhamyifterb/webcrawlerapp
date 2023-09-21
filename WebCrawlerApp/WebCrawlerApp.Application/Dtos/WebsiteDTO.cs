@@ -1,5 +1,8 @@
 namespace WebCrawlerApp.Application.Dtos
 {
+    /// <summary>
+    /// Data Transfer Object for Website 
+    /// </summary>
     public class WebsiteDTO
     {
         public Guid? Id { get; set; }

@@ -1,3 +1,4 @@
+
 using WebCrawlerApp.Core.Interfaces;
 using WebCrawlerApp.Core.Entities;
 using WebCrawlerApp.Application.Interfaces;
@@ -101,7 +102,6 @@ namespace WebCrawlerApp.Application.Services
             if (website != null)
             {
                 // Delete all Execution and CrawledData associated with this Website.
-                // ToDo: Where is await needed and where is it not neccessary?
                 var executions = website.Executions;
                 foreach (var execution in executions) {
                     var crawledData = await _unitOfWork.CrawlRepository.GetByExecutionId(execution.Id);
