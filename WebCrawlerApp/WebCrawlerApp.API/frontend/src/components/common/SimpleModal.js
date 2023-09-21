@@ -8,7 +8,7 @@ const SimpleModal = ({ isVisible, onClose, title, children, titleColor, buttons 
         <div className="modal-overlay">
             <div className="modal-content">
                 <h2 style={{ color: titleColor || 'black' }}>{title}</h2>
-                <p>{children}</p>
+                <>{children}</>
                 {buttons ? buttons : <button className="modal-close-btn" onClick={onClose}>Close</button>}
             </div>
         </div>

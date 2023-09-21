@@ -1,16 +1,16 @@
-import React, { useState, useEffect } from 'react';
-import { SearchCriteriaModel, SortConfigModel } from '../dataModels/dataModels';
-import { useFilterRecords } from '../hooks/useFilterRecords';
-import { useSortRecords } from '../hooks/useSortRecords';
-import { usePaginateRecords } from '../hooks/usePaginateRecords';
-import { useUniqueTags } from '../hooks/useUniqueTags';
+import React, { useState, useEffect, useCallback } from 'react';
+import { SearchCriteriaModel, SortConfigModel } from '../../dataModels/dataModels';
+import { useFilterRecords } from '../../custom-hooks/useFilterRecords';
+import { useSortRecords } from '../../custom-hooks/useSortRecords';
+import { usePaginateRecords } from '../../custom-hooks/usePaginateRecords';
+import { useUniqueTags } from '../../custom-hooks/useUniqueTags';
 import SiteRecordForm from './SiteRecordForm';
 import './SiteRecordList.scss';
-import TableHeader from './TableHeader';
+import TableHeader from '../common/TableHeader';
 import TableRowSiteRecord from './TableRowSiteRecord';
-import Pagination from './Pagination';
-import SimpleModal from '../pages/SimpleModal';
-import { crawlWebsiteRecord, deleteWebsiteRecord, fetchAllWebsiteRecords } from '../apis/apiServices';
+import Pagination from '../common/Pagination';
+import SimpleModal from '../common/SimpleModal';
+import { crawlWebsiteRecord, deleteWebsiteRecord, fetchAllWebsiteRecords } from '../../apis/rest/apiServices';
 
 const SiteRecordList = () => {
     const [showForm, setShowForm] = useState(false);
@@ -30,7 +30,7 @@ const SiteRecordList = () => {
     const sortedRecords = useSortRecords(filteredRecords, sortConfig);
 
     const [currentPage, setCurrentPage] = useState(1);
-    const itemsPerPage = 2; 
+    const itemsPerPage = 5; 
     const paginatedData = usePaginateRecords(sortedRecords, itemsPerPage, currentPage);
 
     const uniqueTags = useUniqueTags(recordsList);
@@ -47,35 +47,36 @@ const SiteRecordList = () => {
       { label: "Actions", enableSearch: false, enableSort: false },
     ];
     
-    const handleAddClick = () => {
-        setEditingRecord(null);
-        setShowForm(true);
-    };
+    const handleAddClick = useCallback(() => {
+      setEditingRecord(null);
+      setShowForm(true);
+    }, []);
 
-    const handleEditClick = (record) => {
-        setEditingRecord(record);
-        setShowForm(true);
-    };
+    const handleEditClick = useCallback((record) => {
+      setEditingRecord(record);
+      setShowForm(true);
+    }, []);
 
-    const handleCrawlClick = (record) => {
+
+    const handleCrawlClick = useCallback((record) => {
       setRecordToCrawl(record);
       setModalInfo({ isVisible: true, title: "Confirm Crawl", message: "Are you sure you want to trigger crawl for this site?", titleColor: "green" });
-    };
+    }, []);
     
-    const handleFormCancel = () => {
-        setShowForm(false);
-    };
-
-    const handleSort = (field, order) => {
+    const handleFormCancel = useCallback(() => {
+      setShowForm(false);
+    }, []);
+    
+    const handleSort = useCallback((field, order) => {
         setSortConfig({ field, order });
-    };
-
-    const handleSearch = (field, value) => {
-      setSearchCriteria(prevState => {
-          const updatedCriteria = { ...prevState, [field]: value };
-          return updatedCriteria;
-      });
-    };
+    }, []);
+    
+    const handleSearch = useCallback((field, value) => {
+        setSearchCriteria(prevState => {
+            const updatedCriteria = { ...prevState, [field]: value };
+            return updatedCriteria;
+        });
+    }, []);
 
     const handleFormSuccess = (updatedOrNewRecord) => {
       if (editingRecord) {
@@ -119,6 +120,7 @@ const SiteRecordList = () => {
 
     const confirmCrawl = async () => {
       try {
+          setModalInfo({ isVisible: true, title: "Success", message: `Executing/Crawling ...`, titleColor: "green" });
           await crawlWebsiteRecord(recordToCrawl.id); 
           setModalInfo({ isVisible: true, title: "Success", message: "Website crawled successfully.", titleColor: "green" });
           fetchAllRecords();
@@ -130,6 +132,7 @@ const SiteRecordList = () => {
 
     const confirmDelete = async () => {
         try {
+            setModalInfo({ isVisible: true, title: "Success", message: `Deleting ...`, titleColor: "green" });
             await deleteWebsiteRecord(recordToDelete.id); 
             setModalInfo({ isVisible: true, title: "Success", message: "Record deleted successfully.", titleColor: "green" });
             const updatedRecordsList = recordsList.filter(record =>
@@ -189,22 +192,30 @@ const SiteRecordList = () => {
                   </tr>
                 </thead>
                 <tbody>
-                    {paginatedData.map((site) => (
-                        <TableRowSiteRecord 
-                            key={site.id}
-                            site={site} 
-                            handleCrawlClick={handleCrawlClick}
-                            handleEditClick={handleEditClick}
-                            handleDeleteClick={handleDeleteClick}
-                        />
-                    ))}
+                  {paginatedData.length > 0 ? (
+                      paginatedData.map((site) => (
+                          <TableRowSiteRecord 
+                              key={site.id}
+                              site={site} 
+                              handleCrawlClick={handleCrawlClick}
+                              handleEditClick={handleEditClick}
+                              handleDeleteClick={handleDeleteClick}
+                          />
+                      ))
+                  ) : (
+                      <tr>
+                          <td colSpan={columns.length}>No values</td>
+                      </tr>
+                  )}
                 </tbody>
             </table>
+            {paginatedData.length > 0 && (
             <Pagination
                 currentPage={currentPage}
                 totalPages={Math.ceil(sortedRecords.length / itemsPerPage)}
                 onPageChange={setCurrentPage}
             />
+            )}
             <SimpleModal 
                 isVisible={modalInfo.isVisible}
                 onClose={closeModal}

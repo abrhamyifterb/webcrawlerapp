@@ -1,23 +1,22 @@
-import React, { useState, useEffect } from 'react';
-import { SearchCriteriaModel, SortConfigModel } from '../dataModels/dataModels';
-import { useFilterRecords } from '../hooks/useFilterRecords';
-import { useSortRecords } from '../hooks/useSortRecords';
-import { usePaginateRecords } from '../hooks/usePaginateRecords';
-import Pagination from './Pagination';
+import React, { useState, useEffect, useCallback } from 'react';
+import { SearchCriteriaModel, SortConfigModel } from '../../dataModels/dataModels';
+import { useFilterRecords } from '../../custom-hooks/useFilterRecords';
+import { useSortRecords } from '../../custom-hooks/useSortRecords';
+import { usePaginateRecords } from '../../custom-hooks/usePaginateRecords';
+import Pagination from '../common/Pagination';
 import './ExecutionList.scss';
-import TableHeader from './TableHeader';
+import TableHeader from '../common/TableHeader';
 import TableRowExecution from './TableRowExecution';
 
-import { fetchAllExecutionRecords, fetchExecutionRecordByWebsiteId } from '../apis/executionApiServices';
+import { fetchAllExecutionRecords, fetchExecutionRecordByWebsiteId } from '../../apis/rest/executionApiServices';
 import { useParams } from 'react-router-dom';
-import { crawlWebsiteRecord, fetchWebsiteRecord } from '../apis/apiServices';
-import SimpleModal from '../pages/SimpleModal';
+import { crawlWebsiteRecord, fetchWebsiteRecord } from '../../apis/rest/apiServices';
+import SimpleModal from '../common/SimpleModal';
 
 const ExecutionList = () => {
 
   const [executionRecordsList, setExecutionRecordsList] = useState([]);
   const [websiteRecord, setWebsiteRecord] = useState([]);
-  const [apiError, setApiError] = useState(null);
 
   const [modalInfo, setModalInfo] = useState({isVisible: false, title: "", message: "", titleColor: ""});
   const [recordToCrawl, setRecordToCrawl] = useState(null);
@@ -29,21 +28,21 @@ const ExecutionList = () => {
   const sortedRecords = useSortRecords(filteredRecords, sortConfig);
 
   const [currentPage, setCurrentPage] = useState(1);
-  const itemsPerPage = 2; 
+  const itemsPerPage = 5; 
   const paginatedData = usePaginateRecords(sortedRecords, itemsPerPage, currentPage);
 
   const { id } = useParams();
 
-  const handleExecutionSort = (field, order) => {
+  const handleExecutionSort = useCallback((field, order) => {
       setSortConfig({ field, order });
-  };
+    }, []);
 
-  const handleExecutionSearch = (field, value) => {
+  const handleExecutionSearch = useCallback((field, value) => {
     setSearchCriteria(prevState => {
         const updatedCriteria = { ...prevState, [field]: value };
         return updatedCriteria;
     });
-  };
+  }, []);
 
   const columns = [
     { label: "Website Label", field: "websiteLabel" },
@@ -53,7 +52,7 @@ const ExecutionList = () => {
     { label: "CrawledSitesCount", field: "crawledSitesCount", enableSearch: false }
   ];
 
-  const fetchExecutionRecords = async () => {
+  const fetchExecutionRecords = useCallback(async () => {
     try {
         let data = [];
         let webData = [];
@@ -76,7 +75,7 @@ const ExecutionList = () => {
     } catch (error) {
         console.error("Error fetching records:", error);
     }
-  };
+  }, [id]);
 
   const handleCrawlClick = () => {
     setRecordToCrawl(websiteRecord);
@@ -85,6 +84,7 @@ const ExecutionList = () => {
 
   const confirmCrawl = async () => {
     try {
+        setModalInfo({ isVisible: true, title: "Success", message: `Executing/Crawling ...`, titleColor: "green" });
         await crawlWebsiteRecord(websiteRecord.id); 
         setModalInfo({ isVisible: true, title: "Success", message: "Website crawled successfully.", titleColor: "green" });
         fetchExecutionRecords();
@@ -105,7 +105,7 @@ const ExecutionList = () => {
 
   useEffect(() => {      
     fetchExecutionRecords();
-  }, []);
+  }, [fetchExecutionRecords]);
 
   return (
     <div className="execution-list">
@@ -133,13 +133,28 @@ const ExecutionList = () => {
                   execution={execution}
               />
           ))}
+          {paginatedData.length > 0 ? (
+              paginatedData.map((execution) => (
+                <TableRowExecution 
+                key={execution.id}
+                execution={execution}
+                  />
+              ))
+          ) : (
+              <tr>
+                <td colSpan={columns.length}>No values</td>
+              </tr>
+          )}
         </tbody>
       </table>
+      
+      {paginatedData.length > 0 && (
       <Pagination
-        currentPage={currentPage}
-        totalPages={Math.ceil(sortedRecords.length / itemsPerPage)}
-        onPageChange={setCurrentPage}
+          currentPage={currentPage}
+          totalPages={Math.ceil(sortedRecords.length / itemsPerPage)}
+          onPageChange={setCurrentPage}
       />
+      )}
 
       <SimpleModal 
         isVisible={modalInfo.isVisible}

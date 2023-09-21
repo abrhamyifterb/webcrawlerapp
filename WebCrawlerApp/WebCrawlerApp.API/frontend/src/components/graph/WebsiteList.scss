@@ -1,0 +1,29 @@
+$font-family-base: Arial, sans-serif;
+$color-neutral-dark: #e8e8e8;
+$color-border: #ccc;
+
+.website-list-visual {
+  font-family: $font-family-base;
+  margin: 25px 2%;
+  box-sizing: border-box;
+
+  h1 {
+    margin-bottom: 20px;
+  }
+
+  table {
+    border-collapse: collapse;
+    width: 100%;
+    margin-bottom: 20px;
+
+    tbody {
+      tr:nth-child(even) {
+        background-color: $color-neutral-dark;
+      }
+
+      tr:hover {
+        background-color: $color-border;
+      }
+    }
+  }
+}

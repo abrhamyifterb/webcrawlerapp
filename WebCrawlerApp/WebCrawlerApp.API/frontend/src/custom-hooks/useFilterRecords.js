@@ -1,5 +1,4 @@
 import { useEffect, useState } from 'react';
-import { ExecutionRecordModel } from '../dataModels/dataModels';
 
 export const useFilterRecords = (records, criteria) => {
     const [filteredRecords, setFilteredRecords] = useState([]);

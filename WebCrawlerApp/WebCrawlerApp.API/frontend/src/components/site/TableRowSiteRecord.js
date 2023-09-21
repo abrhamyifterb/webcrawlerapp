@@ -1,7 +1,7 @@
 import React from 'react';
 import './TableRowSiteRecord.scss';
 
-const TableRowSiteRecord = ({ site, handleCrawlClick, handleExecutionClick, handleEditClick, handleDeleteClick }) => {
+const TableRowSiteRecord = ({ site, handleCrawlClick, handleEditClick, handleDeleteClick }) => {
   return (
     <tr key={site.id}>
       <td>{site.label}</td>

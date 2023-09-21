@@ -1,9 +1,9 @@
 
 import React, { useEffect } from 'react';
-import { SiteRecordModel } from '../dataModels/dataModels';
+import { SiteRecordModel } from '../../dataModels/dataModels';
 import './SiteRecordForm.scss';
-import { validateForm } from '../validators/validators';
-import { submitFormToAPI, updateWebsiteRecord } from '../apis/apiServices';
+import { validateForm } from '../../validators/validators';
+import { submitFormToAPI, updateWebsiteRecord } from '../../apis/rest/apiServices';
 
 const SiteRecordForm = ({ onSubmit, onCancel, initialValues, onSuccess, onError }) => {
   const [formValues, setFormValues] = React.useState(initialValues || SiteRecordModel);
@@ -30,17 +30,19 @@ const SiteRecordForm = ({ onSubmit, onCancel, initialValues, onSuccess, onError 
   const handleSubmit = async (event) => {
       event.preventDefault();
       const errors = validateForm(formValues);
-
+      let response = Object.create({});
       if (Object.keys(errors).length === 0) {
           try {
               if (initialValues && initialValues.id) {
-                await updateWebsiteRecord(initialValues.id, formValues);
+                response = await updateWebsiteRecord(initialValues.id, formValues);
+                console.log(response.Object);
               } else {
-                await submitFormToAPI(formValues);
+                response = await submitFormToAPI(formValues);
+                console.log(response.Object);
               }
 
               onSubmit(formValues);
-              if (onSuccess) onSuccess(formValues);
+              if (onSuccess) onSuccess(response);
           } catch (error) {
               console.error("API submission error:", error);
               if (onError) onError(error);
@@ -64,7 +66,7 @@ const SiteRecordForm = ({ onSubmit, onCancel, initialValues, onSuccess, onError 
 
   return (
     <div className="form-container">
-      <h3>{initialValues ? 'Edit' : 'Add'} Site Record</h3>
+      <h3>{initialValues && initialValues.id ? 'Edit' : 'Add'} Site Record</h3>
       <form onSubmit={handleSubmit}>
         <label htmlFor="label">Label</label>
         <input
@@ -139,7 +141,7 @@ const SiteRecordForm = ({ onSubmit, onCancel, initialValues, onSuccess, onError 
           <option value={false}>Inactive</option>
         </select>
 
-        <button className="save" type="submit">{initialValues ? 'Update' : 'Save'}</button>
+        <button className="save" type="submit">{initialValues && initialValues.id ? 'Update' : 'Save'}</button>
         <button type="button" onClick={onCancel}>
           Cancel
         </button>
