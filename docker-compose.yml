@@ -5,6 +5,9 @@ services:
     build:
       context: ./database
       dockerfile: Dockerfile
+    environment:
+          - POSTGRES_USER=admin
+          - POSTGRES_PASSWORD=admin
     ports:
       - "5432:5432"
 
