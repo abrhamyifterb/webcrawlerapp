@@ -11,6 +11,7 @@ import TableRowSiteRecord from './TableRowSiteRecord';
 import Pagination from '../common/Pagination';
 import SimpleModal from '../common/SimpleModal';
 import { crawlWebsiteRecord, deleteWebsiteRecord, fetchAllWebsiteRecords } from '../../apis/rest/apiServices';
+import Spinner from '../common/Spinner';
 
 const SiteRecordList = () => {
     const [showForm, setShowForm] = useState(false);
@@ -22,6 +23,7 @@ const SiteRecordList = () => {
     const [recordToCrawl, setRecordToCrawl] = useState(null);
     const [recordToDelete, setRecordToDelete] = useState(null);
     const [modalInfo, setModalInfo] = useState({isVisible: false, title: "", message: "", titleColor: ""});
+    const [showSpinner, setShowSpinner] = useState(false);
 
     const [searchCriteria, setSearchCriteria] = useState(SearchCriteriaModel);
     const filteredRecords = useFilterRecords(recordsList, searchCriteria);
@@ -87,6 +89,7 @@ const SiteRecordList = () => {
       } else {
           setRecordsList([...recordsList, updatedOrNewRecord]);
       }
+      setShowForm(false);
       setModalInfo({ isVisible: true, title: "Success", message: `Record ${(editingRecord && editingRecord.id) ? "updated" : "added"} successfully.`, titleColor: "green" });
       setEditingRecord(null);
     };
@@ -120,20 +123,23 @@ const SiteRecordList = () => {
 
     const confirmCrawl = async () => {
       try {
-          setModalInfo({ isVisible: true, title: "Success", message: `Executing/Crawling ...`, titleColor: "green" });
+          setShowSpinner(true);
           await crawlWebsiteRecord(recordToCrawl.id); 
+          setShowSpinner(false);
           setModalInfo({ isVisible: true, title: "Success", message: "Website crawled successfully.", titleColor: "green" });
           fetchAllRecords();
           setRecordToCrawl(null);
       } catch (error) {
+          setShowSpinner(false);
           setModalInfo({ isVisible: true, title: "Error", message: "Failed to delete the record.", titleColor: "red" });
       }
     };
 
     const confirmDelete = async () => {
         try {
-            setModalInfo({ isVisible: true, title: "Success", message: `Deleting ...`, titleColor: "green" });
-            await deleteWebsiteRecord(recordToDelete.id); 
+            setShowSpinner(true);
+            await deleteWebsiteRecord(recordToDelete.id);
+            setShowSpinner(false);
             setModalInfo({ isVisible: true, title: "Success", message: "Record deleted successfully.", titleColor: "green" });
             const updatedRecordsList = recordsList.filter(record =>
               record.id !== recordToDelete.id
@@ -141,6 +147,7 @@ const SiteRecordList = () => {
           setRecordsList(updatedRecordsList);
           setRecordToDelete(null);
         } catch (error) {
+            setShowSpinner(false);
             setModalInfo({ isVisible: true, title: "Error", message: "Failed to delete the record.", titleColor: "red" });
         }
     };
@@ -165,6 +172,7 @@ const SiteRecordList = () => {
 
     return (
         <div className="site-record-list">
+            {showSpinner && <Spinner />}
             <h2>Site Record Management</h2>
             <button className="add" onClick={handleAddClick}>Add Site Record</button>
             {showForm && (
@@ -224,12 +232,12 @@ const SiteRecordList = () => {
                 buttons={
                   recordToDelete ? 
                   <>
-                    <button className="confirm-btn" onClick={confirmDelete}>Yes</button>
+                    <br/> <button className="confirm-btn" onClick={confirmDelete}>Yes</button>
                     <button className="cancel-btn" onClick={cancelDelete}>No</button>
                   </>
                   : recordToCrawl ?
                   <>
-                    <button className="confirm-btn" onClick={confirmCrawl}>Yes</button>
+                    <br/> <button className="confirm-btn" onClick={confirmCrawl}>Yes</button>
                     <button className="cancel-btn" onClick={cancelCrawl}>No</button>
                   </>
                   : <button className="modal-close-btn" onClick={closeModal}>Close</button>

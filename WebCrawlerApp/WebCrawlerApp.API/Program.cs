@@ -7,10 +7,8 @@ using Microsoft.EntityFrameworkCore;
 using Hangfire;
 using Hangfire.MemoryStorage;
 using System.Text.Json;
-using WebCrawlerApp.Core.Entities;
 using WebCrawlerApp.API.GraphQL;
 using WebCrawlerApp.API.GraphQL.Schemas;
-using Npgsql;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -38,14 +36,14 @@ builder.Services.AddGraphQLServer().AddQueryType<Query>().AddObjectType<WebPage>
 
 builder.Services.AddAutoMapper(typeof(WebsiteService).Assembly);
 
-builder.Services.AddDbContext<AppDbContext>(options =>
-    options.UseNpgsql("Host=localhost:5432;Username=admin;Password=admin;Database=postgres"));
+builder.Services.AddDbContext<AppDbContext>(options => 
+    options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
 
 builder.Services.AddHttpClient();
 
 builder.Services.AddCors(options =>
 {
-    options.AddDefaultPolicy(
+    options.AddPolicy("AllowAllOriginsPolicy",
         builder =>
         {
             builder.AllowAnyOrigin()
@@ -66,6 +64,15 @@ builder.Services.AddSwaggerGen(c =>
     c.SwaggerDoc("v1", new() { Title = "My Web Crawler API", Version = "v1" });
 });
 
+builder.WebHost.ConfigureKestrel(serverOptions =>
+{
+    serverOptions.ListenAnyIP(7056);
+    serverOptions.ListenAnyIP(7059, listenOptions =>
+    {
+        listenOptions.UseHttps();
+    });
+});
+
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
@@ -83,9 +90,9 @@ app.UseHangfireDashboard();
 
 RecurringJob.AddOrUpdate<ExecutionScheduler>(x => x.CheckAndExecutePendingWebsites(), Cron.Minutely);
 
-app.UseCors();
+app.UseCors("AllowAllOriginsPolicy");
 
-app.UseHttpsRedirection();
+//app.UseHttpsRedirection();
 app.UseAuthorization();
 app.MapControllers();
 

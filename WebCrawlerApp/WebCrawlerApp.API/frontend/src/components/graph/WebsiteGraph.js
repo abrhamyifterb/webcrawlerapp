@@ -8,6 +8,7 @@ import { fetchExecutionRecordsByWebsiteIds } from '../../apis/rest/executionApiS
 import { SiteRecordModel } from '../../dataModels/dataModels';
 import SiteRecordForm from '../site/SiteRecordForm';
 import './WebsiteGraph.scss';
+import Spinner from '../common/Spinner';
 
 const WebsiteGraph = ({ webPages, setSelectedWebPages, onNewWebPageAdded }) => {
 
@@ -26,6 +27,7 @@ const WebsiteGraph = ({ webPages, setSelectedWebPages, onNewWebPageAdded }) => {
   const [lastEndTime, setLastEndTime] = useState(null);
 
   const [modalInfo, setModalInfo] = useState({isVisible: false, title: "", message: "", titleColor: "", recordType: null, record: null});
+  const [showSpinner, setShowSpinner] = useState(false);
 
   const clickTimeout = useRef(null);
 
@@ -36,10 +38,12 @@ const WebsiteGraph = ({ webPages, setSelectedWebPages, onNewWebPageAdded }) => {
 
   const handleExecute = useCallback(async (node) => {
     try {
-      setModalInfo({ isVisible: true, title: "Success", message: `Executing/Crawling ...`, titleColor: "green" });
+      setShowSpinner(true);
       await crawlWebsiteRecord(node && node.owner.identifier ? node.owner.identifier : node.id);
+      setShowSpinner(false);
       setModalInfo({isVisible: true, title: "Success", message: "Execution Ended!", titleColor: "green", recordType: null, record: null});
     } catch (err) {
+      setShowSpinner(false);
       setModalInfo({isVisible: true, title: "Error", message: "Failed to start execution.", titleColor: "red", recordType: null, record: null});
     }
   }, []);
@@ -138,7 +142,8 @@ const WebsiteGraph = ({ webPages, setSelectedWebPages, onNewWebPageAdded }) => {
     const links = [];
 
     nodes.forEach(node => {
-      const domain = new URL(node.url).hostname;
+      const domainURL = new URL(node.url);
+      const domain = domainURL.protocol ? domainURL.protocol + "//" + domainURL.hostname : domainURL.hostname;
       if (!domainMap[domain]) {
         domainMap[domain] = {
           id: domain,
@@ -154,7 +159,8 @@ const WebsiteGraph = ({ webPages, setSelectedWebPages, onNewWebPageAdded }) => {
       domainMap[domain].children.push(node.url);
 
       node.links.forEach(link => {
-        const targetDomain = new URL(link.url).hostname;
+        const targetDomainURL = new URL(link.url);
+        const targetDomain = targetDomainURL.protocol ? targetDomainURL.protocol + "//" + targetDomainURL.hostname : targetDomainURL.hostname;
         if (domain !== targetDomain) {
           links.push({
             source: domain,
@@ -178,7 +184,7 @@ const WebsiteGraph = ({ webPages, setSelectedWebPages, onNewWebPageAdded }) => {
     return (
       <>
         <p>URL: {node.url}</p>
-        {node.crawlTime && <p>Crawl time: {node.crawlTime}</p>}
+        {node.crawlTime && <p>Crawl time: {node.crawlTime} ms</p>}
         {matchesRegexp ? (
           <>
             <p>Crawled By:</p>
@@ -229,6 +235,7 @@ const WebsiteGraph = ({ webPages, setSelectedWebPages, onNewWebPageAdded }) => {
 
   return (
     <div className='website-graph-visual'>
+      {showSpinner && <Spinner />}
       {showForm && (
           <SiteRecordForm
               key='new'
@@ -239,9 +246,12 @@ const WebsiteGraph = ({ webPages, setSelectedWebPages, onNewWebPageAdded }) => {
           />
       )}
       
-      <button className="edit" onClick={() => setMode(prev => prev === 'live' ? 'static' : 'live')}>Current Mode - {mode}</button>
-      <button className="add" onClick={() => setViewMode(prev => prev === 'domain' ? 'website' : 'domain')}>Current View Mode - {viewMode}</button>
-
+      {graphData && graphData.nodes.length > 0 && (
+        <>
+        <button className="edit" onClick={() => setMode(prev => prev === 'live' ? 'static' : 'live')}>Current Mode - {mode}</button>
+        <button className="add" onClick={() => setViewMode(prev => prev === 'domain' ? 'website' : 'domain')}>Current View Mode - {viewMode}</button>
+        </>
+       )}
       {graphData && graphData.nodes.length > 0 && (
       <ForceGraph2D
         graphData={graphData}
@@ -275,7 +285,7 @@ const WebsiteGraph = ({ webPages, setSelectedWebPages, onNewWebPageAdded }) => {
         title={modalInfo.title}
         titleColor={modalInfo.titleColor}
         buttons={
-          <button onClick={closeModal}>Close</button>
+         <button onClick={closeModal}>Close</button>
         }
       >
         {modalInfo.message}

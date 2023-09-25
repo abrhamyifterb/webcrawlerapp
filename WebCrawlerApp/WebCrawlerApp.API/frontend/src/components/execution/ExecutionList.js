@@ -12,6 +12,7 @@ import { fetchAllExecutionRecords, fetchExecutionRecordByWebsiteId } from '../..
 import { useParams } from 'react-router-dom';
 import { crawlWebsiteRecord, fetchWebsiteRecord } from '../../apis/rest/apiServices';
 import SimpleModal from '../common/SimpleModal';
+import Spinner from '../common/Spinner';
 
 const ExecutionList = () => {
 
@@ -20,6 +21,7 @@ const ExecutionList = () => {
 
   const [modalInfo, setModalInfo] = useState({isVisible: false, title: "", message: "", titleColor: ""});
   const [recordToCrawl, setRecordToCrawl] = useState(null);
+  const [showSpinner, setShowSpinner] = useState(false);
 
   const [searchCriteria, setSearchCriteria] = useState(SearchCriteriaModel);
   const filteredRecords = useFilterRecords(executionRecordsList, searchCriteria);
@@ -84,12 +86,14 @@ const ExecutionList = () => {
 
   const confirmCrawl = async () => {
     try {
-        setModalInfo({ isVisible: true, title: "Success", message: `Executing/Crawling ...`, titleColor: "green" });
+        setShowSpinner(true);
         await crawlWebsiteRecord(websiteRecord.id); 
+        setShowSpinner(false);
         setModalInfo({ isVisible: true, title: "Success", message: "Website crawled successfully.", titleColor: "green" });
         fetchExecutionRecords();
         setRecordToCrawl(null);
     } catch (error) {
+        setShowSpinner(false);
         setModalInfo({ isVisible: true, title: "Error", message: "Failed to delete the record.", titleColor: "red" });
     }
   };
@@ -109,6 +113,7 @@ const ExecutionList = () => {
 
   return (
     <div className="execution-list">
+      {showSpinner && <Spinner />}
       <h2>Execution List {(websiteRecord && websiteRecord.id) ? `for ${websiteRecord.url}` : "" }</h2>
       {(websiteRecord && websiteRecord.id) ? (<><a href={`/execution-management`}><button className="add">See All Executions</button></a>  <button className="crawl" onClick={handleCrawlClick}>Trigger Crawl</button></>) : ""}
       <table>
