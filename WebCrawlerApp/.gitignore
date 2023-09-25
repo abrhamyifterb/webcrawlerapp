@@ -1,0 +1,26 @@
+# ASP.NET Core
+**/[Oo]bj/
+**/[Bb]in/
+*.user
+*.suo
+*.log
+*.sqlite3
+*.db
+*.dat
+*.cache
+
+# React
+node_modules/
+npm-debug.log
+yarn-error.log
+build/
+
+# OS related
+.DS_Store
+*.swp
+*~
+
+# IDE Related
+.vscode/
+.idea/
+*.rsuser
