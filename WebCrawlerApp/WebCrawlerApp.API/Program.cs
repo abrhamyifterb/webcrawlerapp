@@ -18,10 +18,6 @@ builder.Services.AddControllers().AddJsonOptions(options =>
         options.JsonSerializerOptions.PropertyNamingPolicy = JsonNamingPolicy.CamelCase;
     });;
 
-// builder.Services.AddGraphQLServer()
-//                 .AddQueryType<QueryType>();
-
-
 // Dependency Injection
 builder.Services.AddScoped<IWebsiteService, WebsiteService>();
 builder.Services.AddScoped<IExecutionService, ExecutionService>();
@@ -34,12 +30,14 @@ builder.Services.AddScoped<ICrawlRepository, CrawlRepository>();
 builder.Services.AddScoped<IUnitOfWork, UnitOfWork>();
 builder.Services.AddGraphQLServer().AddQueryType<Query>().AddObjectType<WebPage>().AddObjectType<Node>();
 
-builder.Services.AddAutoMapper(typeof(WebsiteService).Assembly);
+builder.Services.AddAutoMapper(typeof(WebsiteService).Assembly); 
 
 builder.Services.AddDbContext<AppDbContext>(options => 
-    options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
+    options.UseMySQL(builder.Configuration.GetConnectionString("DefaultConnection")));
 
 builder.Services.AddHttpClient();
+
+
 
 builder.Services.AddCors(options =>
 {
@@ -51,6 +49,7 @@ builder.Services.AddCors(options =>
                    .AllowAnyMethod();
         });
 });
+
 
 //Hangfire configuration
 builder.Services.AddHangfire(configuration => configuration
@@ -75,6 +74,7 @@ builder.WebHost.ConfigureKestrel(serverOptions =>
 
 var app = builder.Build();
 
+
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
 {
@@ -93,8 +93,15 @@ RecurringJob.AddOrUpdate<ExecutionScheduler>(x => x.CheckAndExecutePendingWebsit
 app.UseCors("AllowAllOriginsPolicy");
 
 //app.UseHttpsRedirection();
+app.Use(async (context, next) =>
+{
+    Console.WriteLine($"Request: {context.Request.Method} {context.Request.Path}");
+    await next.Invoke();
+});
+
 app.UseAuthorization();
 app.MapControllers();
+
 
 app.MapGraphQL("/graphql");
 

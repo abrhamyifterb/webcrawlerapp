@@ -11,34 +11,38 @@ namespace WebCrawlerApp.Infrastructure.Migrations
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
         {
+            migrationBuilder.AlterDatabase()
+                .Annotation("MySQL:Charset", "utf8mb4");
+
             migrationBuilder.CreateTable(
                 name: "Websites",
                 columns: table => new
                 {
-                    Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
-                    Url = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    BoundaryRegExp = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Id = table.Column<Guid>(type: "char(36)", nullable: false),
+                    Url = table.Column<string>(type: "longtext", nullable: false),
+                    BoundaryRegExp = table.Column<string>(type: "longtext", nullable: false),
                     CrawlFrequency = table.Column<int>(type: "int", nullable: false),
-                    Label = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    IsActive = table.Column<bool>(type: "bit", nullable: false),
-                    Tags = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    LastExecutionTime = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    CrawledData = table.Column<string>(type: "nvarchar(max)", nullable: true)
+                    Label = table.Column<string>(type: "longtext", nullable: false),
+                    IsActive = table.Column<bool>(type: "tinyint(1)", nullable: false),
+                    Tags = table.Column<string>(type: "longtext", nullable: false),
+                    LastExecutionTime = table.Column<DateTime>(type: "datetime(6)", nullable: false),
+                    CrawledData = table.Column<string>(type: "longtext", nullable: true)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Websites", x => x.Id);
-                });
+                })
+                .Annotation("MySQL:Charset", "utf8mb4");
 
             migrationBuilder.CreateTable(
                 name: "Executions",
                 columns: table => new
                 {
-                    Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
-                    WebsiteId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
-                    WebsiteLabel = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    StartTime = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    EndTime = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    Id = table.Column<Guid>(type: "char(36)", nullable: false),
+                    WebsiteId = table.Column<Guid>(type: "char(36)", nullable: false),
+                    WebsiteLabel = table.Column<string>(type: "longtext", nullable: false),
+                    StartTime = table.Column<DateTime>(type: "datetime(6)", nullable: false),
+                    EndTime = table.Column<DateTime>(type: "datetime(6)", nullable: false),
                     Status = table.Column<int>(type: "int", nullable: false),
                     CrawledSitesCount = table.Column<int>(type: "int", nullable: false)
                 },
@@ -51,19 +55,20 @@ namespace WebCrawlerApp.Infrastructure.Migrations
                         principalTable: "Websites",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
-                });
+                })
+                .Annotation("MySQL:Charset", "utf8mb4");
 
             migrationBuilder.CreateTable(
                 name: "CrawledDatas",
                 columns: table => new
                 {
-                    Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
-                    Url = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    Title = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    CrawlTime = table.Column<double>(type: "float", nullable: false),
-                    IsRestricted = table.Column<bool>(type: "bit", nullable: false),
-                    Links = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    ExecutionId = table.Column<Guid>(type: "uniqueidentifier", nullable: false)
+                    Id = table.Column<Guid>(type: "char(36)", nullable: false),
+                    Url = table.Column<string>(type: "longtext", nullable: false),
+                    Title = table.Column<string>(type: "longtext", nullable: false),
+                    CrawlTime = table.Column<double>(type: "double", nullable: false),
+                    IsRestricted = table.Column<bool>(type: "tinyint(1)", nullable: false),
+                    Links = table.Column<string>(type: "longtext", nullable: false),
+                    ExecutionId = table.Column<Guid>(type: "char(36)", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -74,7 +79,8 @@ namespace WebCrawlerApp.Infrastructure.Migrations
                         principalTable: "Executions",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
-                });
+                })
+                .Annotation("MySQL:Charset", "utf8mb4");
 
             migrationBuilder.CreateIndex(
                 name: "IX_CrawledDatas_ExecutionId",

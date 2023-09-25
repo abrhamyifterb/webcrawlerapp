@@ -9,7 +9,7 @@ services:
     ports:
       - "7056:7056"
     environment:
-      ConnectionStrings__DefaultConnection: "Server=db;Database=mydatabase;User Id=sa;Password=SuperSecrectPassword;"
+      ConnectionStrings__DefaultConnection: "Host=db;Port=3306;Database=mydatabase;Username=root;Password=root;"
     depends_on:
       - db
 
@@ -22,15 +22,18 @@ services:
       - "3000:80"
 
   db:
-    image: mcr.microsoft.com/mssql/server
+    image: mysql:8.0
+    cap_add:
+      - SYS_NICE
+    restart: always
     environment:
-      - ACCEPT_EULA=Y
-      - SA_PASSWORD=SuperSecrectPassword 
-      - MSSQL_PID=Express
+      - MYSQL_DATABASE=db
+      - MYSQL_ROOT_PASSWORD=root
     ports:
-      - '1433:1433'
+      - '3306:3306'
     volumes:
-      - db:/var/opt/mssql
+      - db:/var/lib/mysql
+      - ./db/init.sql:/docker-entrypoint-initdb.d/init.sql
 
 volumes:
   db:
