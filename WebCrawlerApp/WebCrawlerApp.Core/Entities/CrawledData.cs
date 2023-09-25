@@ -11,8 +11,7 @@ namespace WebCrawlerApp.Core.Entities {
         public Guid Id { get; set; }
         public string Url { get; private set; }
         public string Title { get; private set; }
-        public TimeSpan CrawlTime { get; private set; }
-        public DateTime StartTime { get; private set; }
+        public Double CrawlTime { get; private set; }
         public bool IsRestricted { get; private set; }
         public ICollection<string> Links { get; private set; } = new List<string>();
         public Guid ExecutionId { get; private set; }
@@ -51,15 +50,6 @@ namespace WebCrawlerApp.Core.Entities {
         public void SetLinks(ICollection<string> links)
         {
             Links = links;
-        }
-
-        public void StartCrawlTime()
-        {
-            StartTime = DateTime.UtcNow;
-        }
-        public void SetCrawlTime()
-        {
-            CrawlTime = DateTime.UtcNow - StartTime;
         }
     }
 }

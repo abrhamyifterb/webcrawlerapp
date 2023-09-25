@@ -1,0 +1,37 @@
+version: '3.8'
+
+services:
+  webapi:
+    container_name: crawlerwebapi_container
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - "7056:7056"
+    environment:
+      ConnectionStrings__DefaultConnection: "Server=db;Database=mydatabase;User Id=sa;Password=SuperSecrectPassword;"
+    depends_on:
+      - db
+
+  frontend:
+    container_name: crawlerreact_container
+    build:
+      context: ./WebCrawlerApp.API/frontend/
+      dockerfile: Dockerfile
+    ports:
+      - "3000:80"
+
+  db:
+    image: mcr.microsoft.com/mssql/server
+    environment:
+      - ACCEPT_EULA=Y
+      - SA_PASSWORD=SuperSecrectPassword 
+      - MSSQL_PID=Express
+    ports:
+      - '1433:1433'
+    volumes:
+      - db:/var/opt/mssql
+
+volumes:
+  db:
+    driver: local

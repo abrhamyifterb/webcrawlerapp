@@ -7,6 +7,7 @@ using WebCrawlerApp.Application.Dtos;
 using RobotsTxt;
 using WebCrawlerApp.Core.Interfaces;
 using AutoMapper;
+using System.Diagnostics;
 
 namespace WebCrawlerApp.Application.Services
 {
@@ -125,6 +126,8 @@ namespace WebCrawlerApp.Application.Services
         /// <returns></returns>
         private async Task<CrawledDataDTO> CrawlSinglePage(string url, string boundaryRegExp)
         {
+            var stopwatch = new Stopwatch();
+            stopwatch.Start();
             try
             {
                 
@@ -133,7 +136,6 @@ namespace WebCrawlerApp.Application.Services
                     _logger.LogWarning($"Crawling is disallowed by robots.txt for {url}");
                     return null;
                 }
-                var StartCrawlTime = DateTime.UtcNow - StartTime
                 var httpResponse = await _httpClient.GetAsync(url);
 
                 if (!httpResponse.IsSuccessStatusCode)
@@ -145,14 +147,17 @@ namespace WebCrawlerApp.Application.Services
                 var content = await httpResponse.Content.ReadAsStringAsync();
                 
                 var parsedProcessedDocument = HtmlDocumentParser(content, url, boundaryRegExp);
-                var EndCrawlTime = DateTime.UtcNow - StartCrawlTime;
-                parsedProcessedDocument.CrawlTime = EndCrawlTime;
+                parsedProcessedDocument.Result.CrawlTime = stopwatch.Elapsed.TotalMilliseconds;
                 return parsedProcessedDocument.Result;
             }
             catch (Exception ex)
             {
                 _logger.LogError(ex, $"An error occurred while crawling {url}");
                 return null;
+            }
+            finally
+            {
+                stopwatch.Stop();
             }
         }
 
@@ -196,8 +201,8 @@ namespace WebCrawlerApp.Application.Services
                 Url = url,
                 Title = title,
                 IsRestricted = !boundaryRegExpChecker,
-                Links = links
-                CrawlTime = null
+                Links = links,
+                CrawlTime = 0.0
             };
 
             return Task.FromResult(parsedProcessed);
