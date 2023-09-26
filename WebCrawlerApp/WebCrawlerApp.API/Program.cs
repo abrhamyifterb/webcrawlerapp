@@ -74,9 +74,9 @@ builder.WebHost.ConfigureKestrel(serverOptions =>
 
 var app = builder.Build();
 
-
+var presentaionMode = true;
 // Configure the HTTP request pipeline.
-if (app.Environment.IsDevelopment())
+if (app.Environment.IsDevelopment() || presentaionMode)
 {
     app.UseSwagger();
     app.UseSwaggerUI(c =>
@@ -99,10 +99,8 @@ app.Use(async (context, next) =>
     await next.Invoke();
 });
 
+app.MapGraphQL("/graphql");
 app.UseAuthorization();
 app.MapControllers();
-
-
-app.MapGraphQL("/graphql");
 
 app.Run();

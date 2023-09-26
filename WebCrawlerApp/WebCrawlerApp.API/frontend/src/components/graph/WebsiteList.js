@@ -6,12 +6,14 @@ import TableHeader from '../common/TableHeader';
 import TableRowActive from './TableRowActive';
 import './WebsiteList.scss';
 
+const itemsPerPage = 5; 
+
 const WebsiteList = forwardRef((props, ref) => {
-  const { loading, error, data, refetch } = useQuery(FETCH_WEBSITES);
+  const { loading, error, data, refetch } = useQuery(FETCH_WEBSITES, { fetchPolicy: 'network-only' });
   const [currentItems, setCurrentItems] = useState([]);
   const [pageCount, setPageCount] = useState(1);
   const [currentPage, setCurrentPage] = useState(1);
-  const itemsPerPage = 5; 
+  const [refetchCount, setRefetchCount] = useState(0);
 
   const updateRefetchedWebsites = useCallback(() => {
     if (data && data.websites) {
@@ -24,16 +26,19 @@ const WebsiteList = forwardRef((props, ref) => {
 
   const handleRefetch = async () => {
     try {
+      console.log("Refetching websites...");
       await refetch();
       updateRefetchedWebsites();
+      setRefetchCount(prev => prev + 1);
+      console.log("Refetched websites");
     } catch (err) {
       console.error("Error refetching:", err);
     }
   };
-
+  
   useEffect(() => {
     updateRefetchedWebsites();
-  }, [data, currentPage, updateRefetchedWebsites]);
+  }, [data, currentPage, updateRefetchedWebsites, refetchCount]);
 
   useImperativeHandle(ref, () => ({
     refetchWebsites: handleRefetch
@@ -71,14 +76,20 @@ const WebsiteList = forwardRef((props, ref) => {
           </tr>
         </thead>
         <tbody>
-          {currentItems.map((website) => (
-              <TableRowActive 
-                  key={website.identifier}
-                  website={website}
-                  selectedWebPages={props.selectedWebPages}
-                  handleSelection={handleSelection}
-              />
-          ))}
+          {currentItems.length > 0 ? (
+            currentItems.map((website) => (
+                <TableRowActive 
+                    key={website.identifier}
+                    website={website}
+                    selectedWebPages={props.selectedWebPages}
+                    handleSelection={handleSelection}
+                />
+            ))
+            ) : (
+                <tr>
+                    <td colSpan={columns.length}>No values</td>
+                </tr>
+            )}
         </tbody>
       </table>
       <Pagination

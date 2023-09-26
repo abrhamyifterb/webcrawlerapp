@@ -39,7 +39,7 @@ const WebsiteGraph = ({ webPages, setSelectedWebPages, onNewWebPageAdded }) => {
   const handleExecute = useCallback(async (node) => {
     try {
       setShowSpinner(true);
-      await crawlWebsiteRecord(node && node.owner.identifier ? node.owner.identifier : node.id);
+      await crawlWebsiteRecord((node.owner && node.owner.identifier) ? node.owner.identifier : node.id);
       setShowSpinner(false);
       setModalInfo({isVisible: true, title: "Success", message: "Execution Ended!", titleColor: "green", recordType: null, record: null});
     } catch (err) {
@@ -184,7 +184,7 @@ const WebsiteGraph = ({ webPages, setSelectedWebPages, onNewWebPageAdded }) => {
     return (
       <>
         <p>URL: {node.url}</p>
-        {node.crawlTime && <p>Crawl time: {node.crawlTime} ms</p>}
+        <p>Crawl time: {node.crawlTime} ms</p>
         {matchesRegexp ? (
           <>
             <p>Crawled By:</p>

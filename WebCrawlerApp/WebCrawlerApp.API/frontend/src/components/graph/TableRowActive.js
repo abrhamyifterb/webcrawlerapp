@@ -16,3 +16,4 @@ const TableRowActive = ({ website, selectedWebPages, handleSelection }) => {
 };
 
 export default TableRowActive;
+ 

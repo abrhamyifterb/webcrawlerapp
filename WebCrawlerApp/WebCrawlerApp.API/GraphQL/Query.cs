@@ -68,7 +68,6 @@ namespace WebCrawlerApp.API.GraphQL
         }
         return nodes;
     }
-
     }
 }
 

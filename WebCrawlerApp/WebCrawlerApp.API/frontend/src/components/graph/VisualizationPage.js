@@ -13,9 +13,10 @@ const VisualizationPage = () => {
       websiteListRef.current.refetchWebsites();
     }
   }
+  
   return (
     <ApolloProvider client={ApolloClientConfig}>
-    <div style={{margin: '25px'}}>
+    <div className='visualization-page'>
       <h1>Visualization</h1>
       
       <WebsiteList ref={websiteListRef} selectedWebPages={selectedWebPages} setSelectedWebPages={setSelectedWebPages} onNewWebPageAdded={handleNewWebPageAdded} />

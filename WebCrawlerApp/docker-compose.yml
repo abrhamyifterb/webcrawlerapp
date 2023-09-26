@@ -8,6 +8,7 @@ services:
       dockerfile: Dockerfile
     ports:
       - "7056:7056"
+    restart: unless-stopped
     environment:
       ConnectionStrings__DefaultConnection: "Host=db;Port=3306;Database=mydatabase;Username=root;Password=root;"
     depends_on:
