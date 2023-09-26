@@ -1,0 +1,10 @@
+website:- https://webscraper.io/test-sites/e-commerce/allinone
+regex:- ^https?://(www\.)?webscraper\.io/test-sites/e-commerce/allinone/?$
+
+
+website:- https://webscraper.io/tutorials
+regex:- ^https?://(www\.)?webscraper\.io/tutorials/?$
+
+
+website:- http://afriagro.com
+regex:- ^https?://(www\.)?afriagro\.com(\/[-a-zA-Z0-9]+)?
